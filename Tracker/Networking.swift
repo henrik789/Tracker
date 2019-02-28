@@ -16,8 +16,6 @@ struct BitCoinData: Codable {
 public class Networking {
     
     
-    var numberOfRequests: Int = 0
-    
     let baseURL = "https://apiv2.bitcoinaverage.com/indices/global/ticker/BTC"
     let currencyArray = ["AUD", "BRL","CAD","CNY","EUR","GBP","HKD","IDR","ILS","INR","JPY","MXN","NOK","NZD","PLN","RON","RUB","SEK","SGD","USD","ZAR"]
     let currencySymbolArray = ["$", "R$", "$", "¥", "€", "£", "$", "Rp", "₪", "₹","¥", "$", "kr", "$", "zł", "L", "p.", "kr", "$", "$", "R"]
@@ -41,7 +39,7 @@ public class Networking {
                 print("Error \(jsonError)")
             }
             }.resume()
-        return self.price
+        return price
     }
     
     
@@ -133,24 +131,36 @@ public class Networking {
     func getPrice(row: Int) -> String{
         finalURL = baseURL + currencyArray[row]
         let bitcoinPrice = currencySymbolArray[row] + " " + getData(url: finalURL)
-    
+        print(finalURL)
         return bitcoinPrice
     }
     
-    func downloadData() {
-    print("---\(currencyArray.count)---\(currencySymbolArray.count)---")
 
-        for index in 0...currencyArray.count - 1 {
-            finalURL = baseURL + currencyArray[index]
-            let prices = currencySymbolArray[index] + " " + getData(url: finalURL)
-            pricelist.priceArray.insert(prices, at: index)
-            print(prices)
+    
+    func downloadData() {
+        for index in 0...self.currencyArray.count - 1 {
+            self.pricelist.priceArray.insert(self.getPrice(row: index), at: index)
+            let countryCode = self.setNation(row: index)
+            let flagImage: UIImage = self.flagArray(land: countryCode)
+            self.pricelist.flagArray.append(flagImage)
         }
         print(pricelist.priceArray)
     }
-    
 }
 
+
+
+//    func networkCall(completion: @escaping (String) -> Void) {
+//        let mainQueue = DispatchQueue.main
+//        let deadline = DispatchTime.now() + .seconds(3)
+//        let date = Date()
+//        let data = getData(url: "https://apiv2.bitcoinaverage.com/indices/global/ticker/BTCSEK")
+//        print(date, " ", data)
+//        mainQueue.asyncAfter(deadline: deadline) {
+//            completion(data)
+//            print(data)
+//        }
+//    }
 
 //func getData(url: String, completion: @escaping (String?) -> Void) -> String {
 //
@@ -178,3 +188,4 @@ public class Networking {
 //    }
 //    return ""
 //}
+

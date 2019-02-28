@@ -16,6 +16,7 @@ class DetailsViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     @IBOutlet weak var currencyPicker: UIPickerView!
     @IBOutlet weak var flagImage: UIImageView!
     
+    var pricelist = PriceList()
     
     override func viewDidLoad() {
         super.viewDidLoad()

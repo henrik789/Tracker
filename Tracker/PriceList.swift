@@ -11,6 +11,7 @@ import UIKit
 class PriceList {
     
     var priceArray: [String] = [""]
+    var flagArray: [UIImage] = []
     
 //    init() {
 //        let prices =  PriceData()
