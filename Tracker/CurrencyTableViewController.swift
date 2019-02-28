@@ -21,6 +21,8 @@ class CurrencyTableViewController: UITableViewController{
 //                let date = Date()
 //                print(date, "hejsan")
 //        }
+        let sek = networking.getData(url: "https://apiv2.bitcoinaverage.com/indices/global/ticker/BTCSEK")
+        print(sek)
         networking.downloadData()
 //        print(pricelist.priceArray)
         

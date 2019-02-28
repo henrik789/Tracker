@@ -27,13 +27,13 @@ public class Networking {
     var pricelist = PriceList()
     var pricedata = PriceData()
     
-    func getData(url: String) -> String {
+    func getData(completion : @escaping (String?)->()){
         
-        guard let url = URL(string: finalURL) else {return "No Network Connection"}
+        guard let url = URL(string: finalURL) else {return}
         URLSession.shared.dataTask(with: url) { (data, response, err) in
             guard let data = data else { return }
             do{
-                let myBitcoin = try JSONDecoder().decode(BitCoinData.self, from: data)
+                let myBitcoin = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String : Any] else {return}
                 self.price = String(myBitcoin.ask)
             }catch let jsonError{
                 print("Error \(jsonError)")
@@ -41,6 +41,22 @@ public class Networking {
             }.resume()
         return price
     }
+    
+    
+//    func getData(url: String) -> String {
+//
+//        guard let url = URL(string: finalURL) else {return "No Network Connection"}
+//        URLSession.shared.dataTask(with: url) { (data, response, err) in
+//            guard let data = data else { return }
+//            do{
+//                let myBitcoin = try JSONDecoder().decode(BitCoinData.self, from: data)
+//                self.price = String(myBitcoin.ask)
+//            }catch let jsonError{
+//                print("Error \(jsonError)")
+//            }
+//            }.resume()
+//        return price
+//    }
     
     
     func getJSON() -> String{
@@ -149,7 +165,50 @@ public class Networking {
 }
 
 
-
+//class Personkatalog{
+//    var list = [Person]()
+//
+//    func getAllData(completion : @escaping (String?)->()){
+//        let jsonUrlString = finalURL
+//
+//        guard let url = URL(string: jsonUrlString) else {return}
+//        URLSession.shared.dataTask(with: url) { (data, respons, error) in
+//            if let error = error{
+//                completion(error.localizedDescription)
+//            }
+//            guard let dataResp = data else {return}
+//            do{
+//                guard let json = try JSONSerialization.jsonObject(with: dataResp, options: .mutableContainers) as? [String : Any] else {return}
+//                if let data = json["personlista"] as? [String : Any]{
+//                    if let personer = data["person"] as? [Any]{
+//                        for (index, person) in personer.enumerated(){
+//                            if let person = person as? [String : Any] {
+//                                if let firstName = person["tilltalsnamn"] as? String,
+//                                    let lastName = person["efternamn"] as? String,
+//                                    let yearOfBirth = person["fodd_ar"] as? String,
+//                                    let parti = person["parti"] as? String,
+//                                    let urlLink = person["bild_url_192"] as? String,
+//                                    let gender = person["kon"] as? String {
+//
+//                                    let newPerson = Person(firstName: firstName, lastName: lastName, yearOfBirth: yearOfBirth, parti: parti, urlLink: urlLink, gender: gender)
+//                                    self.list.append(newPerson)
+//                                    if index == personer.count-1{
+//                                        completion(nil)
+//                                    }
+//                                }
+//                            }
+//                        }
+//                    }
+//                }
+//                //self.genderBalance()
+//            }
+//            catch{
+//                print("error serialization")
+//            }
+//        }.resume()
+//}
+//
+//
 //    func networkCall(completion: @escaping (String) -> Void) {
 //        let mainQueue = DispatchQueue.main
 //        let deadline = DispatchTime.now() + .seconds(3)
