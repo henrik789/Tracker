@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6SU-Nq-pZ0">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Details-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Tracker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="DetailsViewController" customModule="Tracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -22,7 +22,7 @@
                                 <rect key="frame" x="10" y="451" width="355" height="216"/>
                             </pickerView>
                             <stackView opaque="NO" contentMode="scaleAspectFit" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="jAD-aP-jHN">
-                                <rect key="frame" x="30" y="343" width="315" height="65"/>
+                                <rect key="frame" x="30" y="387" width="315" height="65"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Lcs-rO-EhX">
                                         <rect key="frame" x="0.0" y="0.0" width="66" height="65"/>
@@ -36,7 +36,7 @@
                                 </subviews>
                             </stackView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="0Xx-VT-PLQ">
-                                <rect key="frame" x="10" y="40" width="355" height="283"/>
+                                <rect key="frame" x="10" y="84" width="355" height="283"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="283" id="bMB-sb-3av"/>
@@ -60,6 +60,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Details" id="7AY-PN-Die"/>
                     <connections>
                         <outlet property="bitcoinPriceLabel" destination="i8f-r0-DJM" id="0oh-h1-uWL"/>
                         <outlet property="currencyPicker" destination="mLT-aS-Ztk" id="PIF-77-rHY"/>
@@ -69,7 +70,83 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53.600000000000001" y="27.436281859070466"/>
+            <point key="canvasLocation" x="1487" y="2"/>
+        </scene>
+        <!--Bitcoin Price Table-->
+        <scene sceneID="xXj-LC-3ZP">
+            <objects>
+                <tableViewController id="7LF-c7-UHK" customClass="CurrencyTableViewController" customModule="Tracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="o4P-10-Wlf">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="cell" rowHeight="66" id="JLd-8P-tPG">
+                                <rect key="frame" x="0.0" y="28" width="375" height="66"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JLd-8P-tPG" id="nJ6-w0-axy">
+                                    <rect key="frame" x="0.0" y="0.0" width="335" height="65.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Currency" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dN3-Wx-QCl">
+                                            <rect key="frame" x="95" y="10" width="219" height="22"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="219" id="zMZ-E8-Ru1"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LkR-ti-oyu">
+                                            <rect key="frame" x="20" y="2" width="67" height="61.5"/>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="LkR-ti-oyu" firstAttribute="top" secondItem="nJ6-w0-axy" secondAttribute="top" constant="2" id="CcV-WT-r3y"/>
+                                        <constraint firstItem="LkR-ti-oyu" firstAttribute="leading" secondItem="nJ6-w0-axy" secondAttribute="leading" constant="20" symbolic="YES" id="MwK-uU-vpJ"/>
+                                        <constraint firstItem="dN3-Wx-QCl" firstAttribute="top" secondItem="nJ6-w0-axy" secondAttribute="topMargin" constant="-1" id="QTD-2v-GhD"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="dN3-Wx-QCl" secondAttribute="bottom" constant="23" id="Xct-N2-AbJ"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="dN3-Wx-QCl" secondAttribute="trailing" constant="13" id="aa7-oB-EQh"/>
+                                        <constraint firstItem="dN3-Wx-QCl" firstAttribute="leading" secondItem="LkR-ti-oyu" secondAttribute="trailing" constant="8" symbolic="YES" id="dm6-X4-xG2"/>
+                                        <constraint firstAttribute="bottom" secondItem="LkR-ti-oyu" secondAttribute="bottom" constant="2" id="k1c-wT-aDM"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="7LF-c7-UHK" id="4ra-6b-9xu"/>
+                            <outlet property="delegate" destination="7LF-c7-UHK" id="xw8-vw-YOS"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Bitcoin Price Table" id="ytn-5a-hdp">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="jyX-DU-Hfl">
+                            <connections>
+                                <segue destination="BYZ-38-t0r" kind="show" id="Xrb-WW-E6c"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GeR-hb-1xx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="716" y="1.3493253373313345"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="fYT-Cz-87c">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="6SU-Nq-pZ0" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="1qk-NB-A7u">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="7LF-c7-UHK" kind="relationship" relationship="rootViewController" id="d2Z-E8-f7f"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gDu-Ic-mYD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-22" y="3"/>
         </scene>
     </scenes>
 </document>

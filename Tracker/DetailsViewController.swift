@@ -7,7 +7,7 @@ import UIKit
 
 
 
-class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class DetailsViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     let networking = Networking()
     

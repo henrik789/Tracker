@@ -15,6 +15,9 @@ struct BitCoinData: Codable {
 
 public class Networking {
     
+    
+    var numberOfRequests: Int = 0
+    
     let baseURL = "https://apiv2.bitcoinaverage.com/indices/global/ticker/BTC"
     let currencyArray = ["AUD", "BRL","CAD","CNY","EUR","GBP","HKD","IDR","ILS","INR","JPY","MXN","NOK","NZD","PLN","RON","RUB","SEK","SGD","USD","ZAR"]
     let currencySymbolArray = ["$", "R$", "$", "¥", "€", "£", "$", "Rp", "₪", "₹","¥", "$", "kr", "$", "zł", "L", "p.", "kr", "$", "$", "R"]
@@ -23,8 +26,10 @@ public class Networking {
     var flagImage: UIImage = UIImage()
     var price : String = ""
     var prettyText: [String: Any] = [:]
+    var pricelist = PriceList()
+    var pricedata = PriceData()
     
-    func getData(url: String) -> String{
+    func getData(url: String) -> String {
         
         guard let url = URL(string: finalURL) else {return "No Network Connection"}
         URLSession.shared.dataTask(with: url) { (data, response, err) in
@@ -127,12 +132,44 @@ public class Networking {
     
     func getPrice(row: Int) -> String{
         finalURL = baseURL + currencyArray[row]
-        let bitcoinPrice = currencySymbolArray[row] + getData(url: finalURL)
+        let bitcoinPrice = currencySymbolArray[row] + " " + getData(url: finalURL)
+    
         return bitcoinPrice
     }
     
+    func downloadData() {
+    print("---\(currencyArray.count)---\(currencySymbolArray.count)---")
+
+        for index in 0...currencyArray.count - 1 {
+            finalURL = baseURL + currencyArray[index]
+            let prices = currencySymbolArray[index] + " " + getData(url: finalURL)
+            pricelist.priceArray.insert(prices, at: index)
+            print(prices)
+        }
+        print(pricelist.priceArray)
+    }
     
 }
+
+
+//func getData(url: String, completion: @escaping (String?) -> Void) -> String {
+//
+//    guard let url = URL(string: finalURL) else {return "No Network Connection"}
+//    URLSession.shared.dataTask(with: url) { (data, response, err) in
+//        guard let data = data else { return }
+//        do{
+//            let myBitcoin = try JSONDecoder().decode(BitCoinData.self, from: data)
+//            self.price = String(myBitcoin.ask)
+//            completion(String(myBitcoin.ask))
+//        }catch let jsonError{
+//            print("Error \(jsonError)")
+//            completion(nil)
+//        }
+//        }.resume()
+//    return self.price
+//}
+
+
 
 //func convertDictionaryToJsonString(dict: NSMutableDictionary) -> String {
 //    let jsonData = try? JSONSerialization.data(withJSONObject: dict, options: JSONSerialization.WritingOptions())
