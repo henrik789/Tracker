@@ -41,13 +41,13 @@ class DetailsViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
-        let countryCode = networking.setNation(row: row)
-        flagImage.image = networking.flagArray(land: countryCode)
-        let bitcoinPrice: String = networking.getPrice(row: row)
-        self.bitcoinPriceLabel.text = "Price: \(bitcoinPrice)"
-        let info = networking.getJSON()
-        self.textView.attributedText = prettyString(fromDictionary: networking.prettyText)
-        print(info)
+//        let countryCode = networking.setNation(row: row)
+//        flagImage.image = networking.flagArray(land: countryCode)
+//        let bitcoinPrice: String = networking.getPrice(row: row)
+//        self.bitcoinPriceLabel.text = "Price: \(bitcoinPrice)"
+//        let info = networking.getJSON()
+//        self.textView.attributedText = prettyString(fromDictionary: networking.prettyText)
+//        print(info)
     }
     
 }

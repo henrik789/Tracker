@@ -19,28 +19,83 @@ public class Networking {
     let baseURL = "https://apiv2.bitcoinaverage.com/indices/global/ticker/BTC"
     let currencyArray = ["AUD", "BRL","CAD","CNY","EUR","GBP","HKD","IDR","ILS","INR","JPY","MXN","NOK","NZD","PLN","RON","RUB","SEK","SGD","USD","ZAR"]
     let currencySymbolArray = ["$", "R$", "$", "¥", "€", "£", "$", "Rp", "₪", "₹","¥", "$", "kr", "$", "zł", "L", "p.", "kr", "$", "$", "R"]
-    var finalURL = ""
+    var finalURL = [String]()
     var jsonText: String = ""
     var flagImage: UIImage = UIImage()
     var price : String = ""
     var prettyText: [String: Any] = [:]
     var pricelist = PriceList()
     var pricedata = PriceData()
+    var list = [String]()
     
-    func getData(completion : @escaping (String?)->()){
+    func getURL(){
+        for index in 0...self.currencyArray.count - 1{
+            var country = baseURL + currencyArray[index]
+            finalURL.append(country)
+        }
+    }
         
-        guard let url = URL(string: finalURL) else {return}
-        URLSession.shared.dataTask(with: url) { (data, response, err) in
+        
+    func getData(completion : @escaping ()-> Void){
+        for index in 0...finalURL.count{
+        guard let url = URL(string: finalURL[index]) else {return}
+        
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            
+            if let error = error{
+                print(error)
+            }
+            
             guard let data = data else { return }
             do{
-                let myBitcoin = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String : Any] else {return}
+                guard let jsonResponse = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String : Any] else {return}
+                
+                self.jsonText = String(data: data, encoding: .utf8)!
+                self.prettyText = jsonResponse
+                let myBitcoin = try JSONDecoder().decode(BitCoinData.self, from: data)
                 self.price = String(myBitcoin.ask)
+                self.list.append(self.price)
+                
             }catch let jsonError{
                 print("Error \(jsonError)")
             }
+            completion()
             }.resume()
-        return price
+        }
+        return
     }
+
+    
+    
+    
+//    func getData(completion : @escaping ()-> Void){
+//
+//        guard let url = URL(string: finalURL) else {return}
+//
+//        URLSession.shared.dataTask(with: url) { (data, response, error) in
+//
+//            if let error = error{
+//                print(error)
+//            }
+//
+//            guard let data = data else { return }
+//            do{
+//               guard let jsonResponse = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String : Any] else {return}
+//
+//                self.jsonText = String(data: data, encoding: .utf8)!
+//                self.prettyText = jsonResponse
+//                let myBitcoin = try JSONDecoder().decode(BitCoinData.self, from: data)
+//                self.price = String(myBitcoin.ask)
+//                self.list.append(self.price)
+//
+//            }catch let jsonError{
+//                print("Error \(jsonError)")
+//            }
+//            completion()
+//            }.resume()
+//        return
+//        }
+    
     
     
 //    func getData(url: String) -> String {
@@ -59,27 +114,27 @@ public class Networking {
 //    }
     
     
-    func getJSON() -> String{
-        
-        guard let url = URL(string: finalURL) else {return "No Network Connection"}
-        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
-            guard let dataResponse = data,
-                error == nil else {
-                    print(error?.localizedDescription ?? "Response Error")
-                    return }
-            do{
-                let jsonResponse = try JSONSerialization.jsonObject(with: dataResponse, options: [])
-                self.jsonText = String(data: dataResponse, encoding: .utf8)!
-                self.prettyText = jsonResponse as! [String : Any]
-                
-//                print("text: \(self.jsonText)")
-            } catch let parsingError {
-                print("Error", parsingError)
-            }
-        }
-        task.resume()
-        return jsonText
-    }
+//    func getJSON() -> String{
+//        
+//        guard let url = URL(string: finalURL) else {return "No Network Connection"}
+//        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+//            guard let dataResponse = data,
+//                error == nil else {
+//                    print(error?.localizedDescription ?? "Response Error")
+//                    return }
+//            do{
+//                let jsonResponse = try JSONSerialization.jsonObject(with: dataResponse, options: [])
+//                self.jsonText = String(data: dataResponse, encoding: .utf8)!
+//                self.prettyText = jsonResponse as! [String : Any]
+//                
+////                print("text: \(self.jsonText)")
+//            } catch let parsingError {
+//                print("Error", parsingError)
+//            }
+//        }
+//        task.resume()
+//        return jsonText
+//    }
     
     func flagArray(land: String) -> UIImage{
         let imgUrl = "https://www.countryflags.io/\(land)/flat/64.png"
@@ -144,24 +199,28 @@ public class Networking {
         }
     }
     
-    func getPrice(row: Int) -> String{
-        finalURL = baseURL + currencyArray[row]
-        let bitcoinPrice = currencySymbolArray[row] + " " + getData(url: finalURL)
-        print(finalURL)
-        return bitcoinPrice
-    }
-    
+//    func getPrice(row: Int) -> String{
+//        finalURL = baseURL + currencyArray[row]
+//        let bitcoinPrice = currencySymbolArray[row] + " " + getData(completion: finalURL)
+//        print(finalURL)
+//        return bitcoinPrice
+//    }
+//    
 
     
-    func downloadData() {
-        for index in 0...self.currencyArray.count - 1 {
-            self.pricelist.priceArray.insert(self.getPrice(row: index), at: index)
-            let countryCode = self.setNation(row: index)
-            let flagImage: UIImage = self.flagArray(land: countryCode)
-            self.pricelist.flagArray.append(flagImage)
+    func downloadData(){
+        var bcURL = ""
+        self.getData { () in
+            for index in 0...self.currencyArray.count - 1{
+                bcURL = self.baseURL + self.currencyArray[index]
+                let value = self.list.count
+               print(bcURL)
+//                print(self.finalURL ,value, " " , self.list, "   ", self.list.count)
+            }
+            
         }
-        print(pricelist.priceArray)
     }
+    
 }
 
 

@@ -16,15 +16,18 @@ class CurrencyTableViewController: UITableViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        networking.getURL()
+//        for _ in 0...10{
+//            print("hej")
+        print("TVC: " , networking.downloadData())
+//        }
 //        networking.networkCall{ (date) in
 //                let date = Date()
 //                print(date, "hejsan")
 //        }
-        let sek = networking.getData(url: "https://apiv2.bitcoinaverage.com/indices/global/ticker/BTCSEK")
-        print(sek)
-        networking.downloadData()
-//        print(pricelist.priceArray)
+
+//        var pris = networking.downloadData()
+//        print(pris)
         
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.barStyle = .default
@@ -38,7 +41,7 @@ class CurrencyTableViewController: UITableViewController{
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 //        return networking.currencyArray.count
 //        print(pricelist.priceArray.count)
-        return 10
+        return networking.list.count
     }
 
 
@@ -46,13 +49,15 @@ class CurrencyTableViewController: UITableViewController{
     
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
+
+
+        
         if let label = cell.viewWithTag(1) as? UILabel {
-//            label.text = pricelist.priceArray[indexPath.row]
+            label.text = networking.list[indexPath.row]
         }
 //        cell.imageView?.image = pricelist.flagArray[indexPath.row]
 //            let countryCode = networking.setNation(row: indexPath.row)
 //            cell.imageView?.image = networking.flagArray(land: countryCode)
-        tableView.reloadData()
         return cell
     }
     

@@ -1,0 +1,16 @@
+
+
+
+Networking flow:
+
+* from tableVC call function to start download process
+
+* make an array of URLs
+
+* get data from API
+
+* append data to price list array
+
+* use that array to load table view cell data
+
+
