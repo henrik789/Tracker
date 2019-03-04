@@ -36,6 +36,7 @@
 		AF5508DA222984D900F7097F /* Notes */ = {isa = PBXFileReference; lastKnownFileType = text; path = Notes; sourceTree = "<group>"; };
 		AF577165222417E1002C1A8B /* PrettyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrettyJSON.swift; sourceTree = "<group>"; };
 		AF57716922256B3E002C1A8B /* CurrencyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTableViewController.swift; sourceTree = "<group>"; };
+		AF5E8384222D48CE0092ECA3 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +77,7 @@
 				AF5508D42226C4AF00F7097F /* PriceData.swift */,
 				AF5508D62226DD0C00F7097F /* PriceList.swift */,
 				AF577165222417E1002C1A8B /* PrettyJSON.swift */,
+				AF5E8384222D48CE0092ECA3 /* MyPlayground.playground */,
 				AF0CC378221AB5F5007948CD /* Main.storyboard */,
 				AF0CC37B221AB5F6007948CD /* Assets.xcassets */,
 				AF0CC37D221AB5F6007948CD /* LaunchScreen.storyboard */,

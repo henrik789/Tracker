@@ -16,10 +16,11 @@ class CurrencyTableViewController: UITableViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        networking.getJSON()
+        
+        networking.getURLs()
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.barStyle = .default
-        
+
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -36,12 +37,12 @@ class CurrencyTableViewController: UITableViewController{
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
         if let label = cell.viewWithTag(1) as? UILabel {
-            label.text = networking.getPrice(row: indexPath.row)
+//            label.text = networking.pricelist[indexPath.row - 1]
         }
         cell.imageView?.image = UIImage(named: "64")
         let countryCode = networking.setNation(row: indexPath.row)
         cell.imageView?.image = networking.flagArray(land: countryCode)
-        
+        self.tableView.reloadData()
         return cell
     }
     

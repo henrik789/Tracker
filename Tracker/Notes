@@ -3,9 +3,11 @@
 
 Networking flow:
 
-* from tableVC call function to start download process
-
 * make an array of URLs
+
+* from tableVC call function to start download process, networking.getJSON
+
+how to see if all json is in the array, completion?
 
 * get data from API
 

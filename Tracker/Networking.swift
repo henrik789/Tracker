@@ -19,52 +19,83 @@ public class Networking {
     let baseURL = "https://apiv2.bitcoinaverage.com/indices/global/ticker/BTC"
     let currencyArray = ["AUD", "BRL","CAD","CNY","EUR","GBP","HKD","IDR","ILS","INR","JPY","MXN","NOK","NZD","PLN","RON","RUB","SEK","SGD","USD","ZAR"]
     let currencySymbolArray = ["$", "R$", "$", "¥", "€", "£", "$", "Rp", "₪", "₹","¥", "$", "kr", "$", "zł", "L", "p.", "kr", "$", "$", "R"]
-    var finalURL = ""
+//    var finalURL = ""
+    var JSONData = [String]()
     var jsonText: String = ""
     var flagImage: UIImage = UIImage()
     var price : String = ""
     var prettyText: [String: Any] = [:]
-    var pricelist = PriceList()
+    var pricelist = [String]()
     var pricedata = PriceData()
     var list = [String]()
     
-    func getData(url: String) -> String {
-
-        guard let url = URL(string: finalURL) else {return "No Network Connection"}
+    
+    func getData(finalURL: String, completion: (Bool) -> Void) {
+        var isSuccess = true
+        guard let url = URL(string: finalURL) else {return}
         URLSession.shared.dataTask(with: url) { (data, response, err) in
             guard let data = data else { return }
             do{
                 let myBitcoin = try JSONDecoder().decode(BitCoinData.self, from: data)
                 self.price = String(myBitcoin.ask)
+                self.pricelist.append(self.price)
             }catch let jsonError{
                 print("Error \(jsonError)")
+                isSuccess = false
             }
-            }.resume()
-        return price
+            }
+            .resume()
+        completion(isSuccess)
     }
     
     
-    func getJSON() -> String{
-
-        guard let url = URL(string: finalURL) else {return "No Network Connection"}
-        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
-            guard let dataResponse = data,
-                error == nil else {
-                    print(error?.localizedDescription ?? "Response Error")
-                    return }
-            do{
-                let jsonResponse = try JSONSerialization.jsonObject(with: dataResponse, options: [])
-                self.jsonText = String(data: dataResponse, encoding: .utf8)!
-                self.prettyText = jsonResponse as! [String : Any]
-
-//                print("text: \(self.jsonText)")
-            } catch let parsingError {
-                print("Error", parsingError)
-            }
+    
+    // collects all urls in array to use in getjson()
+    func getURLs(){
+        for index in 0...currencyArray.count - 1{
+            list.append(baseURL + currencyArray[index])
+            let finalUrl = list[index]
+            getData(finalURL: finalUrl, completion: { ( isSuccess: Bool) in
+                if isSuccess {
+                    print("Finito! \(finalUrl)") }
+            })
         }
-        task.resume()
+        //        print("URLs in list: \(list.count)")
+    }
+    
+    
+    // takes in a url from list[] and fetches the json from that adress to PriceData array of objects
+    func getJSON(finalURL: String) -> String{
+//        for index in 0...list.count - 1{
+            guard let url = URL(string: finalURL) else {return "No Network Connection"}
+            let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+                guard let dataResponse = data,
+                    error == nil else {
+                        print(error?.localizedDescription ?? "Response Error")
+                        return }
+                do{
+                    let jsonResponse = try JSONSerialization.jsonObject(with: dataResponse, options: [])
+                    self.jsonText = String(data: dataResponse, encoding: .utf8)!
+                    self.JSONData.append(self.jsonText)
+                    self.prettyText = jsonResponse as! [String : Any]
+//                    print(finalURL)
+                    
+                } catch let parsingError {
+                    print("Error", parsingError)
+                }
+            }
+            task.resume()
+//        }
+        print("From getJson: \(JSONData)")
         return jsonText
     }
+//    
+//    func getPrice(row: Int) -> String{  // should return price info from the JSON array
+//        finalURL = baseURL + currencyArray[row]
+//        let bitcoinPrice = currencySymbolArray[row] // array with all json, one row / land
+//        print(finalURL)
+//        return bitcoinPrice
+//    }
     
     func flagArray(land: String) -> UIImage{
         let imgUrl = "https://www.countryflags.io/\(land)/flat/64.png"
@@ -129,10 +160,12 @@ public class Networking {
         }
     }
     
-    func getPrice(row: Int) -> String{
-        finalURL = baseURL + currencyArray[row]
-        let bitcoinPrice = currencySymbolArray[row] + " " + getData(url: finalURL)
-        print(finalURL)
-        return bitcoinPrice
-    }
+    
+    
+    //    func getPrice(row: Int) -> String{
+    //        finalURL = baseURL + currencyArray[row]
+    //        let bitcoinPrice = currencySymbolArray[row] + " " + getData(url: finalURL)
+    //        print(finalURL)
+    //        return bitcoinPrice
+    //    }
 }
