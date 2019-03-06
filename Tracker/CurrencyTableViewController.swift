@@ -14,13 +14,13 @@ class CurrencyTableViewController: UITableViewController{
         super.init(coder: aDecoder)
     }
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         networking.getURLs()
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.barStyle = .default
-
+        
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -33,25 +33,39 @@ class CurrencyTableViewController: UITableViewController{
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
-        if let label = cell.viewWithTag(1) as? UILabel {
-//            label.text = networking.pricelist[indexPath.row - 1]
+        let countryCode = self.networking.setNation(row: indexPath.row)
+        cell.imageView?.image = self.networking.flagArray(land: countryCode)
+        
+        if cell.accessoryView == nil {
+            let indicator = UIActivityIndicatorView(style: .gray)
+            cell.accessoryView = indicator
         }
-        cell.imageView?.image = UIImage(named: "64")
-        let countryCode = networking.setNation(row: indexPath.row)
-        cell.imageView?.image = networking.flagArray(land: countryCode)
-        self.tableView.reloadData()
+        
+        let mainQueue = DispatchQueue.main
+        let deadline = DispatchTime.now() + .seconds(1)
+        
+        mainQueue.asyncAfter(deadline: deadline){
+            if let label = cell.viewWithTag(1) as? UILabel {
+//            let url = self.networking.list[indexPath.row]
+            let priceText = self.networking.price + "  " + self.networking.list[indexPath.row]
+            label.text = priceText
+            }
+        }
+
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if let cell = tableView.cellForRow(at: indexPath){
-            cell.imageView?.image = pricelist.flagArray[indexPath.row]
-        }
+//        if let cell = tableView.cellForRow(at: indexPath){
+//            cell.imageView?.image = pricelist.flagArray[indexPath.row - 1]
+//        }
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
 }
+
+
+

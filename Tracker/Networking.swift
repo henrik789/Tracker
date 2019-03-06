@@ -30,7 +30,7 @@ public class Networking {
     var list = [String]()
     
     
-    func getData(finalURL: String, completion: (Bool) -> Void) {
+    func getData(finalURL: String, completion: @escaping  (Bool) -> Void) {
         var isSuccess = true
         guard let url = URL(string: finalURL) else {return}
         URLSession.shared.dataTask(with: url) { (data, response, err) in
