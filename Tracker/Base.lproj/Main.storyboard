@@ -45,6 +45,28 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f32-tb-dGM">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" id="jkH-NL-GuN">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jSV-I6-wID">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" id="vtY-b9-wcG">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            </view>
+                                            <vibrancyEffect>
+                                                <blurEffect style="dark"/>
+                                            </vibrancyEffect>
+                                        </visualEffectView>
+                                    </subviews>
+                                </view>
+                                <blurEffect style="light"/>
+                            </visualEffectView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -60,17 +82,42 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Details" id="7AY-PN-Die"/>
+                    <navigationItem key="navigationItem" title="Details" id="7AY-PN-Die">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="jl7-oc-9EK">
+                            <connections>
+                                <action selector="openView:" destination="BYZ-38-t0r" id="pQk-F5-OQJ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="bitcoinPriceLabel" destination="i8f-r0-DJM" id="0oh-h1-uWL"/>
+                        <outlet property="blurView" destination="f32-tb-dGM" id="1LQ-o2-Z6a"/>
                         <outlet property="currencyPicker" destination="mLT-aS-Ztk" id="PIF-77-rHY"/>
+                        <outlet property="detailView" destination="Sk9-Jr-HYS" id="A8w-tD-ER8"/>
                         <outlet property="flagImage" destination="Lcs-rO-EhX" id="Idy-KX-W2F"/>
                         <outlet property="textView" destination="0Xx-VT-PLQ" id="tjK-Ts-rMo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="Sk9-Jr-HYS">
+                    <rect key="frame" x="0.0" y="0.0" width="270" height="140"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tgs-Qz-RZ6">
+                            <rect key="frame" x="116" y="56" width="39" height="32"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <state key="normal" title="Done"/>
+                            <connections>
+                                <action selector="closeView:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yzC-uW-77l"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <viewLayoutGuide key="safeArea" id="kgq-Pn-aR1"/>
+                </view>
             </objects>
-            <point key="canvasLocation" x="1487" y="2"/>
+            <point key="canvasLocation" x="1485.5999999999999" y="1.3493253373313345"/>
         </scene>
         <!--Bitcoin Price Table-->
         <scene sceneID="xXj-LC-3ZP">
