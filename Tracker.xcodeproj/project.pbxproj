@@ -19,6 +19,7 @@
 		AF5508DB222984D900F7097F /* Notes in Resources */ = {isa = PBXBuildFile; fileRef = AF5508DA222984D900F7097F /* Notes */; };
 		AF577166222417E1002C1A8B /* PrettyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF577165222417E1002C1A8B /* PrettyJSON.swift */; };
 		AF57716A22256B3E002C1A8B /* CurrencyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF57716922256B3E002C1A8B /* CurrencyTableViewController.swift */; };
+		AF9D72CF22390F4900187316 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9D72CE22390F4900187316 /* MapViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		AF577165222417E1002C1A8B /* PrettyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrettyJSON.swift; sourceTree = "<group>"; };
 		AF57716922256B3E002C1A8B /* CurrencyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTableViewController.swift; sourceTree = "<group>"; };
 		AF5E8384222D48CE0092ECA3 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		AF9D72CE22390F4900187316 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 				AF5508D82229819A00F7097F /* Backup.swift */,
 				AF0CC386221ABA5B007948CD /* Networking.swift */,
 				AF0CC376221AB5F5007948CD /* DetailsViewController.swift */,
+				AF9D72CE22390F4900187316 /* MapViewController.swift */,
 				AF57716922256B3E002C1A8B /* CurrencyTableViewController.swift */,
 				AF5508D42226C4AF00F7097F /* PriceData.swift */,
 				AF5508D62226DD0C00F7097F /* PriceList.swift */,
@@ -163,6 +166,7 @@
 				AF57716A22256B3E002C1A8B /* CurrencyTableViewController.swift in Sources */,
 				AF0CC387221ABA5B007948CD /* Networking.swift in Sources */,
 				AF5508D72226DD0C00F7097F /* PriceList.swift in Sources */,
+				AF9D72CF22390F4900187316 /* MapViewController.swift in Sources */,
 				AF577166222417E1002C1A8B /* PrettyJSON.swift in Sources */,
 				AF5508D92229819A00F7097F /* Backup.swift in Sources */,
 				AF0CC377221AB5F5007948CD /* DetailsViewController.swift in Sources */,

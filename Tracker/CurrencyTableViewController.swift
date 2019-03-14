@@ -17,7 +17,9 @@ class CurrencyTableViewController: UITableViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        networking.getURLs()
+//        networking.getURLs(completion: { () -> Void in
+//            print(self.networking.pricelist)
+//        })
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.barStyle = .default
         
@@ -34,37 +36,34 @@ class CurrencyTableViewController: UITableViewController{
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        
-        let countryCode = self.networking.setNation(row: indexPath.row)
-        cell.imageView?.image = self.networking.flagArray(land: countryCode)
-        
-        if cell.accessoryView == nil {
-            let indicator = UIActivityIndicatorView(style: .gray)
-            cell.accessoryView = indicator
-        }
-        
-        let mainQueue = DispatchQueue.main
-        let deadline = DispatchTime.now() + .seconds(1)
-        
-        mainQueue.asyncAfter(deadline: deadline){
-            if let label = cell.viewWithTag(1) as? UILabel {
-//            let url = self.networking.list[indexPath.row]
-            let priceText = self.networking.price + "  " + self.networking.list[indexPath.row]
-            label.text = priceText
-            }
-        }
+//        let countryCode = self.networking.setNation(row: indexPath.row)
+//        cell.imageView?.image = self.networking.flagArray(land: countryCode)
 
+//        if cell.accessoryView == nil{
+//            let indicator = UIActivityIndicatorView(style: .gray)
+//            cell.accessoryView = indicator
+//        }
+//
+//        let mainQueue = DispatchQueue.main
+//        let deadline = DispatchTime.now() + .seconds(1)
+//        mainQueue.asyncAfter(deadline: deadline){
+//
+//            if let label = cell.viewWithTag(1) as? UILabel {
+//                //            let url = self.networking.list[indexPath.row]
+//                let priceText = self.networking.price + "  " + self.networking.urlList[indexPath.row]
+//                label.text = priceText
+//            }
+//        }
         return cell
     }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+            
+            //        if let cell = tableView.cellForRow(at: indexPath){
+            //            cell.imageView?.image = pricelist.flagArray[indexPath.row - 1]
+            //        }
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
         
-//        if let cell = tableView.cellForRow(at: indexPath){
-//            cell.imageView?.image = pricelist.flagArray[indexPath.row - 1]
-//        }
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
-    
 }
 
 

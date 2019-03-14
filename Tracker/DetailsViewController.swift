@@ -18,6 +18,7 @@ class DetailsViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     @IBOutlet weak var blurView: UIVisualEffectView!
     var effect: UIVisualEffect!
     @IBOutlet var detailView: UIView!
+    @IBOutlet weak var popupTextView: UITextView!
     
     var pricelist = PriceList()
     
@@ -27,25 +28,25 @@ class DetailsViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         currencyPicker.dataSource = self
         
         effect = blurView.effect
-        blurView.effect = nil
         blurView.isHidden = true
-        detailView.layer.cornerRadius = 10
+        detailView.layer.cornerRadius = 15
         
     }
 
     
     @IBAction func openView(_ sender: Any) {
+        
         animateIn(completion: { () -> Void in blurView.isHidden = false})
     }
     
     @IBAction func closeView(_ sender: Any) {
-        animateOut(completion: { () -> Void in blurView.isHidden = true})
+        animateOut(completion: { () -> Void in blurView.isHidden = false})
     }
     
     func animateIn(completion: () -> Void) {
         self.view.addSubview(detailView)
-        detailView.center = self.view.center
         
+        detailView.center = self.view.center
         detailView.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
         detailView.alpha = 0
         
@@ -60,10 +61,8 @@ class DetailsViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     
     func animateOut (completion: () -> Void) {
         UIView.animate(withDuration: 0.3, animations: {
-            self.detailView.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
+            self.detailView.transform = CGAffineTransform.init(scaleX: 0.1, y: 0.1)
             self.detailView.alpha = 0
-//            self.detailView.isHidden = true
-
             self.blurView.effect = nil
             
         }) { (success:Bool) in
@@ -74,7 +73,8 @@ class DetailsViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
 
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-            return networking.currencyArray.count
+//            return networking.currencyArray.count
+        return 12
     }
 
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -82,18 +82,19 @@ class DetailsViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return String(networking.currencyArray[row])
+//        return String(networking.currencyArray[row])
+        return "Title here"
         
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
-        let countryCode = networking.setNation(row: row)
-        flagImage.image = networking.flagArray(land: countryCode)
-        let bitcoinPrice: String = networking.price
-        self.bitcoinPriceLabel.text = "Price: \(bitcoinPrice)"
-//        let info = networking.getJSON()
-        self.textView.attributedText = prettyString(fromDictionary: networking.prettyText)
+//        let countryCode = networking.setNation(row: row)
+//        flagImage.image = networking.flagArray(land: countryCode)
+//        let bitcoinPrice: String = networking.price
+//        self.bitcoinPriceLabel.text = "Price: \(bitcoinPrice)"
+////        let info = networking.getJSON()
+//        self.textView.attributedText = prettyString(fromDictionary: networking.prettyText)
 //        print(info)
     }
     

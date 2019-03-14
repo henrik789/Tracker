@@ -19,7 +19,7 @@ public class Networking {
     let baseURL = "https://apiv2.bitcoinaverage.com/indices/global/ticker/BTC"
     let currencyArray = ["AUD", "BRL","CAD","CNY","EUR","GBP","HKD","IDR","ILS","INR","JPY","MXN","NOK","NZD","PLN","RON","RUB","SEK","SGD","USD","ZAR"]
     let currencySymbolArray = ["$", "R$", "$", "¥", "€", "£", "$", "Rp", "₪", "₹","¥", "$", "kr", "$", "zł", "L", "p.", "kr", "$", "$", "R"]
-//    var finalURL = ""
+    //    var finalURL = ""
     var JSONData = [String]()
     var jsonText: String = ""
     var flagImage: UIImage = UIImage()
@@ -27,75 +27,105 @@ public class Networking {
     var prettyText: [String: Any] = [:]
     var pricelist = [String]()
     var pricedata = PriceData()
-    var list = [String]()
+    var urlList = [String]()
     
     
-    func getData(finalURL: String, completion: @escaping  (Bool) -> Void) {
-        var isSuccess = true
-        guard let url = URL(string: finalURL) else {return}
-        URLSession.shared.dataTask(with: url) { (data, response, err) in
-            guard let data = data else { return }
-            do{
-                let myBitcoin = try JSONDecoder().decode(BitCoinData.self, from: data)
-                self.price = String(myBitcoin.ask)
-                self.pricelist.append(self.price)
-            }catch let jsonError{
-                print("Error \(jsonError)")
-                isSuccess = false
-            }
-            }
-            .resume()
-        completion(isSuccess)
+    func getData(finalURL: String, completion: @escaping  () -> Void) {
+        
+        
+        completion()
     }
     
     
     
     // collects all urls in array to use in getjson()
-    func getURLs(){
+    func getURLs(completion: @escaping () -> Void){
         for index in 0...currencyArray.count - 1{
-            list.append(baseURL + currencyArray[index])
-            let finalUrl = list[index]
-            getData(finalURL: finalUrl, completion: { ( isSuccess: Bool) in
-                if isSuccess {
-                    print("Finito! \(finalUrl)") }
-            })
+            urlList.append(baseURL + currencyArray[index])
+            let finalUrl = urlList[index]
+            
+            guard let url = URL(string: finalUrl) else {return}
+            URLSession.shared.dataTask(with: url) { (data, response, err) in
+                guard let data = data else { return }
+                do{
+                    let myBitcoin = try JSONDecoder().decode(BitCoinData.self, from: data)
+                    self.price = String(myBitcoin.ask)
+                    self.pricelist.append(self.price)
+                }catch let jsonError{
+                    print("Error \(jsonError)")
+                }
+                }
+                .resume()
         }
-        //        print("URLs in list: \(list.count)")
+        completion()
     }
+    
+    
+    
+    //    func getData(finalURL: String, completion: @escaping  () -> Void) {
+    //
+    //        guard let url = URL(string: finalURL) else {return}
+    //        URLSession.shared.dataTask(with: url) { (data, response, err) in
+    //            guard let data = data else { return }
+    //            do{
+    //                let myBitcoin = try JSONDecoder().decode(BitCoinData.self, from: data)
+    //                self.price = String(myBitcoin.ask)
+    //                self.pricelist.append(self.price)
+    //            }catch let jsonError{
+    //                print("Error \(jsonError)")
+    //            }
+    //            }
+    //            .resume()
+    //        completion()
+    //    }
+    //
+    //
+    //
+    //    // collects all urls in array to use in getjson()
+    //    func getURLs(completion: () -> Void){
+    //        for index in 0...currencyArray.count - 1{
+    //            urlList.append(baseURL + currencyArray[index])
+    //            let finalUrl = urlList[index]
+    //            getData(finalURL: finalUrl, completion: { () in
+    ////                    print("Finito! \(finalUrl)")
+    //            })
+    //        }
+    //        completion()
+    //    }
     
     
     // takes in a url from list[] and fetches the json from that adress to PriceData array of objects
     func getJSON(finalURL: String) -> String{
-//        for index in 0...list.count - 1{
-            guard let url = URL(string: finalURL) else {return "No Network Connection"}
-            let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
-                guard let dataResponse = data,
-                    error == nil else {
-                        print(error?.localizedDescription ?? "Response Error")
-                        return }
-                do{
-                    let jsonResponse = try JSONSerialization.jsonObject(with: dataResponse, options: [])
-                    self.jsonText = String(data: dataResponse, encoding: .utf8)!
-                    self.JSONData.append(self.jsonText)
-                    self.prettyText = jsonResponse as! [String : Any]
-//                    print(finalURL)
-                    
-                } catch let parsingError {
-                    print("Error", parsingError)
-                }
+        //        for index in 0...list.count - 1{
+        guard let url = URL(string: finalURL) else {return "No Network Connection"}
+        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+            guard let dataResponse = data,
+                error == nil else {
+                    print(error?.localizedDescription ?? "Response Error")
+                    return }
+            do{
+                let jsonResponse = try JSONSerialization.jsonObject(with: dataResponse, options: [])
+                self.jsonText = String(data: dataResponse, encoding: .utf8)!
+                self.JSONData.append(self.jsonText)
+                self.prettyText = jsonResponse as! [String : Any]
+                //                    print(finalURL)
+                
+            } catch let parsingError {
+                print("Error", parsingError)
             }
-            task.resume()
-//        }
+        }
+        task.resume()
+        //        }
         print("From getJson: \(JSONData)")
         return jsonText
     }
-//    
-//    func getPrice(row: Int) -> String{  // should return price info from the JSON array
-//        finalURL = baseURL + currencyArray[row]
-//        let bitcoinPrice = currencySymbolArray[row] // array with all json, one row / land
-//        print(finalURL)
-//        return bitcoinPrice
-//    }
+    //
+    //    func getPrice(row: Int) -> String{  // should return price info from the JSON array
+    //        finalURL = baseURL + currencyArray[row]
+    //        let bitcoinPrice = currencySymbolArray[row] // array with all json, one row / land
+    //        print(finalURL)
+    //        return bitcoinPrice
+    //    }
     
     func flagArray(land: String) -> UIImage{
         let imgUrl = "https://www.countryflags.io/\(land)/flat/64.png"
