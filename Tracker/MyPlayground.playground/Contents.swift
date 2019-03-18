@@ -19,7 +19,8 @@ class MyApp{
     func regButoonPressed(){
         let base = Base()
         
-            base.createUser(username: "Henrik", password: "123456", completion:     { (isSuccess: Bool, userId: Int) in
+            base.createUser(username: "Henrik", password: "123456", completion:
+                { (isSuccess: Bool, userId: Int) in
                 if isSuccess {
                 print(isSuccess, "Hejsan")
                 }

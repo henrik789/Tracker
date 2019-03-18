@@ -37,7 +37,6 @@
                             </stackView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="0Xx-VT-PLQ">
                                 <rect key="frame" x="10" y="84" width="355" height="283"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="283" id="bMB-sb-3av"/>
                                 </constraints>
@@ -131,7 +130,7 @@
                     <viewLayoutGuide key="safeArea" id="kgq-Pn-aR1"/>
                 </view>
             </objects>
-            <point key="canvasLocation" x="1485.5999999999999" y="1.3493253373313345"/>
+            <point key="canvasLocation" x="1486" y="-298"/>
         </scene>
         <!--Map View Controller-->
         <scene sceneID="yLa-7K-iAc">
@@ -149,10 +148,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="tUj-I2-Ohj"/>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="dio-u4-RRq" id="VZZ-nu-qdW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m7R-Sh-2Ju" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2317.5999999999999" y="0.44977511244377816"/>
+            <point key="canvasLocation" x="1486" y="368"/>
         </scene>
         <!--Bitcoin Price Table-->
         <scene sceneID="xXj-LC-3ZP">

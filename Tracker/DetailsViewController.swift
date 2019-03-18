@@ -16,10 +16,11 @@ class DetailsViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     @IBOutlet weak var currencyPicker: UIPickerView!
     @IBOutlet weak var flagImage: UIImageView!
     @IBOutlet weak var blurView: UIVisualEffectView!
-    var effect: UIVisualEffect!
     @IBOutlet var detailView: UIView!
     @IBOutlet weak var popupTextView: UITextView!
     
+    
+    var effect: UIVisualEffect!
     var pricelist = PriceList()
     
     override func viewDidLoad() {
