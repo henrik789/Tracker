@@ -26,7 +26,7 @@ public class Networking {
     var urlList = [String]()
     
     
-    func getData(finalURL: String, completion: () -> Void) {
+    func getData(finalURL: String) {
         
         let configuration = URLSessionConfiguration.default
         configuration.waitsForConnectivity = true
@@ -34,8 +34,7 @@ public class Networking {
         let url = URL(string: finalURL)!
         let task = session.dataTask(with: url) {
             (data, response, error) in
-            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else
-            {
+            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else{
                 print(HTTPURLResponse.self, finalURL)
                 return
             }
@@ -45,32 +44,36 @@ public class Networking {
             }
             do{
                 print("networking.................")
-
+                
                 let jsonData = try? JSONSerialization.jsonObject(with: data, options: [])
-                //                print(jsonData)
                 if let array = jsonData as? [Any]{
                     for object in array{
                         self.pricelist.append(object)
                     }
                 }
-            } catch let error as Error {
-                print("Error \(error)")
+            }
+            for index in 0...self.pricelist.count - 1{
+                if let dictionary = self.pricelist[index] as? [String: Any] {
+                    if let number = dictionary["name"] as? String {
+                        print(number)
+                        
+                    }
+                }
             }
         }
         task.resume()
-        completion()
     }
     
     
     
     // collects all urls in array to use in getjson()
-//    func getURLs(completion: @escaping () -> Void) {
-//        for index in 0...currencyArray.count - 1{
-//            urlList.append(baseURL + currencyArray[index])
-//            getData(finalURL: urlList[index])
-//        }
-//        completion()
-//    }
+    //    func getURLs(completion: @escaping () -> Void) {
+    //        for index in 0...currencyArray.count - 1{
+    //            urlList.append(baseURL + currencyArray[index])
+    //            getData(finalURL: urlList[index])
+    //        }
+    //        completion()
+    //    }
     
     
     
