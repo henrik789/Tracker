@@ -177,15 +177,22 @@
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="219" id="zMZ-E8-Ru1"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LkR-ti-oyu">
                                             <rect key="frame" x="20" y="2" width="67" height="61.5"/>
                                         </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phone" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7uj-sh-33m">
+                                            <rect key="frame" x="95" y="42" width="220" height="12"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="7uj-sh-33m" firstAttribute="top" secondItem="dN3-Wx-QCl" secondAttribute="bottom" constant="10" id="08W-Yf-sNv"/>
                                         <constraint firstItem="LkR-ti-oyu" firstAttribute="top" secondItem="nJ6-w0-axy" secondAttribute="top" constant="2" id="CcV-WT-r3y"/>
                                         <constraint firstItem="LkR-ti-oyu" firstAttribute="leading" secondItem="nJ6-w0-axy" secondAttribute="leading" constant="20" symbolic="YES" id="MwK-uU-vpJ"/>
                                         <constraint firstItem="dN3-Wx-QCl" firstAttribute="top" secondItem="nJ6-w0-axy" secondAttribute="topMargin" constant="-1" id="QTD-2v-GhD"/>
@@ -193,6 +200,8 @@
                                         <constraint firstAttribute="trailingMargin" secondItem="dN3-Wx-QCl" secondAttribute="trailing" constant="13" id="aa7-oB-EQh"/>
                                         <constraint firstItem="dN3-Wx-QCl" firstAttribute="leading" secondItem="LkR-ti-oyu" secondAttribute="trailing" constant="8" symbolic="YES" id="dm6-X4-xG2"/>
                                         <constraint firstAttribute="bottom" secondItem="LkR-ti-oyu" secondAttribute="bottom" constant="2" id="k1c-wT-aDM"/>
+                                        <constraint firstAttribute="trailing" secondItem="7uj-sh-33m" secondAttribute="trailing" constant="20" symbolic="YES" id="sc7-3G-NSV"/>
+                                        <constraint firstItem="7uj-sh-33m" firstAttribute="leading" secondItem="LkR-ti-oyu" secondAttribute="trailing" constant="8" symbolic="YES" id="y0U-zW-ozX"/>
                                     </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>

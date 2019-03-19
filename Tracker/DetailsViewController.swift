@@ -21,7 +21,7 @@ class DetailsViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     
     
     var effect: UIVisualEffect!
-    var pricelist = PriceList()
+//    var pricelist = PriceList()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +31,7 @@ class DetailsViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         effect = blurView.effect
         blurView.isHidden = true
         detailView.layer.cornerRadius = 15
+        
         
     }
 

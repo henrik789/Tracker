@@ -22,12 +22,15 @@ public class Networking {
     var timestamp  : String = ""
     var prettyText: [String: Any] = [:]
     var pricelist = [Any]()
-    //    var pricedata = PriceData()
+    var personList = [Person]()
     var urlList = [String]()
-    
+    var name = ""
+    var phone = ""
+    var nameList = [String]()
+    var phoneList = [String]()
     
     func getData(finalURL: String) {
-        
+
         let configuration = URLSessionConfiguration.default
         configuration.waitsForConnectivity = true
         let session = URLSession(configuration: configuration)
@@ -50,20 +53,51 @@ public class Networking {
                     for object in array{
                         self.pricelist.append(object)
                     }
-                }
-            }
-            for index in 0...self.pricelist.count - 1{
-                if let dictionary = self.pricelist[index] as? [String: Any] {
-                    if let number = dictionary["name"] as? String {
-                        print(number)
-                        
+                    for index in 0..<self.pricelist.count{
+                        if let dictionary = self.pricelist[index] as? [String: Any] {
+                            if let name = dictionary["name"] as? String,
+                                let phone = dictionary["phone"] as? String {
+                                print("Phone:  \(phone) Name: \(name)")
+                                let newPerson = Person(name: name, phone: phone)
+                                self.personList.append(newPerson)
+                            }
+                        }
                     }
+                    for index in 0..<self.personList.count{
+                        let newPerson = self.personList[index]
+                        self.name = newPerson.name
+                        self.phone = newPerson.phone
+                        self.nameList.append(self.name)
+                        self.phoneList.append(self.phone)
+                        print(self.nameList, self.phoneList)
+                    }
+                    
                 }
             }
+            
         }
         task.resume()
     }
     
+    
+//    func makeList(url: String) {
+//        getData(finalURL: url, completion: { ()   in
+//            print(url)
+//            //        for index in 0..<pricelist.count{
+//            //            if let dictionary = self.pricelist[index] as? [String: Any] {
+//            //                if let name = dictionary["name"] as? String,
+//            //                    let phone = dictionary["phone"] as? String {
+//            //
+//            //                    print("Phone:  \(phone)")
+//            //                    let newPerson = Person(name: name, phone: phone)
+//            //                    self.personList.append(newPerson)
+//            //                    print(personList)
+//            //                }
+//            //            }
+//            //        }
+//
+//        })
+//    }
     
     
     // collects all urls in array to use in getjson()
