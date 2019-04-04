@@ -28,7 +28,7 @@ class DetailsViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     @IBOutlet weak var blurView: UIVisualEffectView!
     @IBOutlet var detailView: UIView!
 //    @IBOutlet weak var popupTextView: UITextView!
-    
+    var getFlags = GetDataFlags()
     
     var effect: UIVisualEffect!
 //    var pricelist = PriceList()
@@ -59,7 +59,7 @@ class DetailsViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         
         detailView.center = self.view.center
         detailView.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
-        detailView.alpha = 0
+        detailView.alpha = 1
         detailView.layer.cornerRadius = 20
         detailView.layer.shadowColor = UIColor.black.cgColor
         detailView.layer.shadowOpacity = 0.8
@@ -94,8 +94,8 @@ class DetailsViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     
     func animateLabel(){
         let animator = UIViewPropertyAnimator(duration: 0.6, curve: .easeOut) {
-            self.bitcoinPriceLabel.center.x -= 40
-            self.textView.backgroundColor = .red
+            self.bitcoinPriceLabel.center.x -= 20
+//            self.textView.backgroundColor = .red
         }
         animator.startAnimation()
         
@@ -114,14 +114,15 @@ class DetailsViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
 //        return String(networking.currencyArray[row])
+        
         return "Title here"
         
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
-//        let countryCode = networking.setNation(row: row)
-//        flagImage.image = networking.flagArray(land: countryCode)
+//        let nation = getFlags.setNation(row: row)
+        flagImage.image = getFlags.flagImageArray[row]
 //        let bitcoinPrice: String = networking.price
 //        self.bitcoinPriceLabel.text = "Price: \(bitcoinPrice)"
 ////        let info = networking.getJSON()

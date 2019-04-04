@@ -40,7 +40,13 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="283" id="bMB-sb-3av"/>
                                 </constraints>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <mutableString key="text">China banned trading in bitcoin, with the first steps taken in September 2017, and a complete ban starting 1 February 2018. Bitcoin prices then fell from $9,052 to $6,914 on 5 February 2018.
+
+Throughout the rest of the first half of 2018, bitcoin's price fluctuated between $11,480 and $5,848. On 1 July 2018 bitcoin's price was $6,343.
+
+Bitcoin prices were negatively affected by several hacks or thefts from cryptocurrency exchanges, including thefts from Coincheck in January 2018, Coinrail and Bithumb in June, and Bancor in July. For the first six months of 2018, $761 million worth of cryptocurrencies was reported stolen from exchanges.
+
+The bitcoin blockchain is a public ledger that records bitcoin transactions.:215–219 Transactions of the form payer X sends Y bitcoins to payee Z are broadcast to this network using readily available software applications.</mutableString>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -60,20 +66,27 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="firstColor">
-                                <color key="value" name="systemYellowColor" catalog="System" colorSpace="catalog"/>
+                                <color key="value" red="0.21720483899116516" green="0.91852253675460815" blue="0.70583933591842651" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="color" keyPath="secondColor">
-                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="value" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="boolean" keyPath="isHorizontal" value="NO"/>
                         </userDefinedRuntimeAttributes>
                     </view>
                     <navigationItem key="navigationItem" title="Details" id="7AY-PN-Die">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="jl7-oc-9EK">
-                            <connections>
-                                <action selector="openView:" destination="BYZ-38-t0r" id="pQk-F5-OQJ"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="jl7-oc-9EK">
+                                <connections>
+                                    <action selector="openView:" destination="BYZ-38-t0r" id="pQk-F5-OQJ"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Map" id="V6l-OD-qhk">
+                                <connections>
+                                    <segue destination="Lsl-KB-7R2" kind="show" id="Eys-fZ-I9D"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="bitcoinPriceLabel" destination="i8f-r0-DJM" id="0oh-h1-uWL"/>
@@ -81,65 +94,112 @@
                         <outlet property="currencyPicker" destination="mLT-aS-Ztk" id="PIF-77-rHY"/>
                         <outlet property="detailView" destination="Sk9-Jr-HYS" id="A8w-tD-ER8"/>
                         <outlet property="flagImage" destination="Lcs-rO-EhX" id="Idy-KX-W2F"/>
-                        <outlet property="popupTextView" destination="gt4-UO-im7" id="znQ-BU-XfR"/>
                         <outlet property="textView" destination="0Xx-VT-PLQ" id="tjK-Ts-rMo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <view clipsSubviews="YES" contentMode="scaleToFill" id="Sk9-Jr-HYS">
-                    <rect key="frame" x="0.0" y="0.0" width="280" height="330"/>
+                    <rect key="frame" x="0.0" y="0.0" width="280" height="400"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BH5-R0-SkJ">
-                            <rect key="frame" x="0.0" y="0.0" width="280" height="330"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <rect key="frame" x="0.0" y="0.0" width="280" height="400"/>
+                            <autoresizingMask key="autoresizingMask"/>
                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" id="iPV-U8-dLK">
-                                <rect key="frame" x="0.0" y="0.0" width="280" height="330"/>
+                                <rect key="frame" x="0.0" y="0.0" width="280" height="400"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Niz-eT-4CA">
-                                        <rect key="frame" x="0.0" y="0.0" width="280" height="330"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="280" height="400"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" id="RBm-ez-qK4">
-                                            <rect key="frame" x="0.0" y="0.0" width="280" height="330"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="280" height="400"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                            <subviews>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gt4-UO-im7">
+                                                    <rect key="frame" x="19" y="72" width="243" height="258"/>
+                                                    <string key="text">The proof-of-work system, alongside the chaining of blocks, makes modifications of the blockchain extremely hard, as an attacker must modify all subsequent blocks in order for the modifications of one block to be accepted. A wallet stores the information necessary to transact bitcoins. While wallets are often described as a place to hold At its most basic, a wallet is a collection of these keys.</string>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The bitcoin blockchain" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8D1-qB-Oc3">
+                                                    <rect key="frame" x="19" y="18" width="243" height="27.5"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="23"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tgs-Qz-RZ6">
+                                                    <rect key="frame" x="121" y="350" width="39" height="32"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <state key="normal" title="Done"/>
+                                                    <connections>
+                                                        <action selector="closeView:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yzC-uW-77l"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="8D1-qB-Oc3" firstAttribute="top" secondItem="RBm-ez-qK4" secondAttribute="top" constant="18" id="6W0-Cg-JW7"/>
+                                                <constraint firstAttribute="bottom" secondItem="tgs-Qz-RZ6" secondAttribute="bottom" priority="222" constant="18" id="7np-Xk-HLX"/>
+                                                <constraint firstAttribute="trailing" secondItem="gt4-UO-im7" secondAttribute="trailing" constant="18" id="Azu-Zw-7xw"/>
+                                                <constraint firstAttribute="trailing" secondItem="8D1-qB-Oc3" secondAttribute="trailing" priority="988" constant="18" id="JfQ-zQ-qIC"/>
+                                                <constraint firstAttribute="trailing" secondItem="tgs-Qz-RZ6" secondAttribute="trailing" constant="120" id="LIU-qQ-Oax"/>
+                                                <constraint firstItem="gt4-UO-im7" firstAttribute="top" secondItem="8D1-qB-Oc3" secondAttribute="bottom" priority="222" constant="26" id="O22-Eb-cmE"/>
+                                                <constraint firstItem="gt4-UO-im7" firstAttribute="leading" secondItem="RBm-ez-qK4" secondAttribute="leading" constant="19" id="TWV-4m-iX2"/>
+                                                <constraint firstItem="8D1-qB-Oc3" firstAttribute="leading" secondItem="RBm-ez-qK4" secondAttribute="leading" constant="19" id="YSG-2D-NlG"/>
+                                                <constraint firstItem="tgs-Qz-RZ6" firstAttribute="top" secondItem="gt4-UO-im7" secondAttribute="bottom" priority="333" constant="20" id="jeD-lC-LUR"/>
+                                                <constraint firstItem="tgs-Qz-RZ6" firstAttribute="leading" secondItem="RBm-ez-qK4" secondAttribute="leading" constant="121" id="zcM-3C-il9"/>
+                                            </constraints>
                                         </view>
-                                        <vibrancyEffect>
-                                            <blurEffect style="light"/>
-                                        </vibrancyEffect>
+                                        <blurEffect style="extraLight"/>
                                     </visualEffectView>
                                 </subviews>
                             </view>
                             <blurEffect style="light"/>
                         </visualEffectView>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tgs-Qz-RZ6">
-                            <rect key="frame" x="121" y="278" width="39" height="32"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                            <state key="normal" title="Done"/>
-                            <connections>
-                                <action selector="closeView:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yzC-uW-77l"/>
-                            </connections>
-                        </button>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="gt4-UO-im7">
-                            <rect key="frame" x="0.0" y="0.0" width="280" height="270"/>
-                            <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                        </textView>
                     </subviews>
-                    <constraints>
-                        <constraint firstItem="gt4-UO-im7" firstAttribute="leading" secondItem="kgq-Pn-aR1" secondAttribute="leading" id="3oY-gQ-6ds"/>
-                        <constraint firstItem="tgs-Qz-RZ6" firstAttribute="leading" secondItem="kgq-Pn-aR1" secondAttribute="leading" constant="121" id="9vS-Pm-3nn"/>
-                        <constraint firstItem="gt4-UO-im7" firstAttribute="trailing" secondItem="kgq-Pn-aR1" secondAttribute="trailing" id="Cln-x2-zll"/>
-                        <constraint firstItem="tgs-Qz-RZ6" firstAttribute="top" secondItem="gt4-UO-im7" secondAttribute="bottom" constant="8" id="PY2-XX-krI"/>
-                        <constraint firstItem="gt4-UO-im7" firstAttribute="top" secondItem="kgq-Pn-aR1" secondAttribute="top" id="QKk-W8-Qc0"/>
-                        <constraint firstItem="kgq-Pn-aR1" firstAttribute="trailing" secondItem="tgs-Qz-RZ6" secondAttribute="trailing" constant="120" id="Wvp-zm-sxa"/>
-                        <constraint firstItem="kgq-Pn-aR1" firstAttribute="bottom" secondItem="tgs-Qz-RZ6" secondAttribute="bottom" constant="20" id="oVp-2I-RxP"/>
-                    </constraints>
                     <viewLayoutGuide key="safeArea" id="kgq-Pn-aR1"/>
                 </view>
             </objects>
             <point key="canvasLocation" x="1486" y="-298"/>
+        </scene>
+        <!--Flag View Controller-->
+        <scene sceneID="E5Z-zw-kKA">
+            <objects>
+                <viewController id="8ak-5T-OF5" customClass="FlagViewController" customModule="Tracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xob-Al-XPa">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="64" translatesAutoresizingMaskIntoConstraints="NO" id="Cyy-5L-Dna">
+                                <rect key="frame" x="67" y="269" width="64" height="64"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dOb-pZ-Coj">
+                                <rect key="frame" x="122" y="181" width="130" height="30"/>
+                                <state key="normal" title="Change flag here..."/>
+                                <connections>
+                                    <action selector="imageButton:" destination="8ak-5T-OF5" eventType="touchUpInside" id="IIK-h8-9Fv"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="dOb-pZ-Coj" firstAttribute="centerX" secondItem="Cyy-5L-Dna" secondAttribute="centerX" constant="88" id="4pf-MH-whL"/>
+                            <constraint firstItem="Cyy-5L-Dna" firstAttribute="leading" secondItem="LLp-HQ-y4q" secondAttribute="leading" constant="67" id="Zg8-rG-zdc"/>
+                            <constraint firstItem="LLp-HQ-y4q" firstAttribute="trailing" secondItem="Cyy-5L-Dna" secondAttribute="trailing" constant="244" id="bSD-jQ-9Ts"/>
+                            <constraint firstItem="dOb-pZ-Coj" firstAttribute="top" secondItem="LLp-HQ-y4q" secondAttribute="top" constant="117" id="fYn-jm-oyB"/>
+                            <constraint firstItem="Cyy-5L-Dna" firstAttribute="top" secondItem="LLp-HQ-y4q" secondAttribute="top" constant="205" id="jsD-1B-aFw"/>
+                            <constraint firstItem="LLp-HQ-y4q" firstAttribute="bottom" secondItem="Cyy-5L-Dna" secondAttribute="bottom" constant="334" id="nxk-tJ-Jax"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="LLp-HQ-y4q"/>
+                    </view>
+                    <connections>
+                        <outlet property="flagImage" destination="Cyy-5L-Dna" id="EGP-sQ-k3B"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="z7Z-ce-cpA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="716" y="732"/>
         </scene>
         <!--Map View Controller-->
         <scene sceneID="yLa-7K-iAc">
@@ -163,7 +223,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m7R-Sh-2Ju" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1486" y="368"/>
+            <point key="canvasLocation" x="1486" y="449"/>
         </scene>
         <!--Bitcoin Price Table-->
         <scene sceneID="xXj-LC-3ZP">
@@ -221,32 +281,38 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Bitcoin Price Table" id="ytn-5a-hdp">
+                        <barButtonItem key="leftBarButtonItem" title="Flags" id="btp-mM-8tO">
+                            <connections>
+                                <segue destination="8ak-5T-OF5" kind="show" id="IMQ-8d-Sbk"/>
+                            </connections>
+                        </barButtonItem>
                         <rightBarButtonItems>
-                            <barButtonItem systemItem="add" id="jyX-DU-Hfl">
+                            <barButtonItem systemItem="add" id="HVv-nu-Qvf">
                                 <connections>
-                                    <segue destination="BYZ-38-t0r" kind="show" id="Xrb-WW-E6c"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="2bk-ts-E4U"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem systemItem="search" id="fgk-ck-AGq">
+                            <barButtonItem title="Get Data" id="xtO-Xo-c6F">
                                 <connections>
-                                    <segue destination="Lsl-KB-7R2" kind="show" id="BZu-Ww-hAQ"/>
+                                    <action selector="networkAction:" destination="7LF-c7-UHK" id="hQM-59-VaF"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="activityView" destination="DPB-7u-eaa" id="HzY-q7-UUz"/>
+                        <outlet property="networkButton" destination="xtO-Xo-c6F" id="6Ro-cB-N3C"/>
                         <outlet property="popUpView" destination="DNG-c1-irl" id="MJK-ec-e9z"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GeR-hb-1xx" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <view contentMode="scaleToFill" id="DNG-c1-irl" userLabel="PopUpView">
+                <view contentMode="scaleToFill" id="DNG-c1-irl" userLabel="PopUpView" customClass="GradientView" customModule="Tracker" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
                         <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FdX-U4-5gx">
                             <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
-                            <color key="backgroundColor" red="0.0049215736798942089" green="0.24897623062133789" blue="0.99694114923477173" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </view>
                         <activityIndicatorView opaque="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="DPB-7u-eaa">
                             <rect key="frame" x="31" y="31" width="37" height="37"/>
@@ -261,6 +327,14 @@
                         <constraint firstItem="FdX-U4-5gx" firstAttribute="top" secondItem="3rH-4w-L7g" secondAttribute="top" id="fIE-4D-Wj0"/>
                     </constraints>
                     <viewLayoutGuide key="safeArea" id="3rH-4w-L7g"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="firstColor">
+                            <color key="value" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="secondColor">
+                            <color key="value" red="0.97462624311447144" green="0.12720018625259399" blue="0.018304426223039627" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                 </view>
             </objects>
             <point key="canvasLocation" x="716" y="1.3493253373313345"/>
@@ -284,4 +358,7 @@
             <point key="canvasLocation" x="-22" y="3"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="64" width="64" height="64"/>
+    </resources>
 </document>

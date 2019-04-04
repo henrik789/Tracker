@@ -13,10 +13,10 @@ class GetDataFlags {
                 let newFlag = self.getImage(land: countryCode)
                 DispatchQueue.main.async {
                     self.flagImageArray.append(newFlag)
-                    print(newFlag)
                 }
             }
         }
+        print("getting flags:  \(flagImageArray.count)")
     }
     
     func getImage(land: String) -> UIImage{
