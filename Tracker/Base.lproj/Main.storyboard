@@ -14,7 +14,7 @@
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="DetailsViewController" customModule="Tracker" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="GradientView" customModule="Tracker" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -58,6 +58,15 @@
                             <constraint firstItem="0Xx-VT-PLQ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="rES-2q-WwH"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="firstColor">
+                                <color key="value" name="systemYellowColor" catalog="System" colorSpace="catalog"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="secondColor">
+                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHorizontal" value="NO"/>
+                        </userDefinedRuntimeAttributes>
                     </view>
                     <navigationItem key="navigationItem" title="Details" id="7AY-PN-Die">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="jl7-oc-9EK">
@@ -225,8 +234,34 @@
                             </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
+                    <connections>
+                        <outlet property="activityView" destination="DPB-7u-eaa" id="HzY-q7-UUz"/>
+                        <outlet property="popUpView" destination="DNG-c1-irl" id="MJK-ec-e9z"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GeR-hb-1xx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="DNG-c1-irl" userLabel="PopUpView">
+                    <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <subviews>
+                        <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FdX-U4-5gx">
+                            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                            <color key="backgroundColor" red="0.0049215736798942089" green="0.24897623062133789" blue="0.99694114923477173" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </view>
+                        <activityIndicatorView opaque="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="DPB-7u-eaa">
+                            <rect key="frame" x="31" y="31" width="37" height="37"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </activityIndicatorView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="FdX-U4-5gx" firstAttribute="leading" secondItem="3rH-4w-L7g" secondAttribute="leading" id="ByV-hM-FXf"/>
+                        <constraint firstItem="FdX-U4-5gx" firstAttribute="bottom" secondItem="3rH-4w-L7g" secondAttribute="bottom" id="ObT-OE-7pg"/>
+                        <constraint firstItem="FdX-U4-5gx" firstAttribute="trailing" secondItem="3rH-4w-L7g" secondAttribute="trailing" id="eHW-Wa-Fhg"/>
+                        <constraint firstItem="FdX-U4-5gx" firstAttribute="top" secondItem="3rH-4w-L7g" secondAttribute="top" id="fIE-4D-Wj0"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="3rH-4w-L7g"/>
+                </view>
             </objects>
             <point key="canvasLocation" x="716" y="1.3493253373313345"/>
         </scene>

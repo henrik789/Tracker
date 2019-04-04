@@ -6,18 +6,28 @@
 import UIKit
 
 
+/*
+ button1.layer.shadowColor = UIColor.black.cgColor
+ button1.layer.shadowOffset = CGSize(width: 5, height: 5)
+ button1.layer.shadowRadius = 5
+ button1.layer.shadowOpacity = 1.0
+ 
+ button2.layer.shadowColor = UIColor.black.cgColor
+ button2.layer.shadowOffset = CGSize(width: 5, height: 5)
+ button2.layer.shadowRadius = 5
+ button2.layer.shadowOpacity = 1.0
+ */
+
 
 class DetailsViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
-    
-    let networking = Networking()
-    
+        
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var bitcoinPriceLabel: UILabel!
     @IBOutlet weak var currencyPicker: UIPickerView!
     @IBOutlet weak var flagImage: UIImageView!
     @IBOutlet weak var blurView: UIVisualEffectView!
     @IBOutlet var detailView: UIView!
-    @IBOutlet weak var popupTextView: UITextView!
+//    @IBOutlet weak var popupTextView: UITextView!
     
     
     var effect: UIVisualEffect!
@@ -30,8 +40,6 @@ class DetailsViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         
         effect = blurView.effect
         blurView.isHidden = true
-        detailView.layer.cornerRadius = 15
-        
         
     }
 
@@ -39,6 +47,7 @@ class DetailsViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     @IBAction func openView(_ sender: Any) {
         
         animateIn(completion: { () -> Void in blurView.isHidden = false})
+        animateLabel()
     }
     
     @IBAction func closeView(_ sender: Any) {
@@ -51,17 +60,27 @@ class DetailsViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         detailView.center = self.view.center
         detailView.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
         detailView.alpha = 0
+        detailView.layer.cornerRadius = 20
+        detailView.layer.shadowColor = UIColor.black.cgColor
+        detailView.layer.shadowOpacity = 0.8
+        detailView.layer.shadowRadius = 10
+        detailView.layer.shadowOffset = CGSize(width: -1, height: 3)
         
         UIView.animate(withDuration: 0.4) {
             self.blurView.effect = self.effect
             self.detailView.alpha = 1
             self.detailView.transform = CGAffineTransform.identity
+            self.detailView.layer.shadowColor = UIColor.clear.cgColor
+            self.detailView.layer.shadowOpacity = 0
+            self.detailView.layer.shadowRadius = 0
+            self.detailView.layer.shadowOffset = CGSize(width: 0, height: 0)
         }
         completion()
     }
     
     
     func animateOut (completion: () -> Void) {
+        
         UIView.animate(withDuration: 0.3, animations: {
             self.detailView.transform = CGAffineTransform.init(scaleX: 0.1, y: 0.1)
             self.detailView.alpha = 0
@@ -71,6 +90,16 @@ class DetailsViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
             self.detailView.removeFromSuperview()
         }
         completion()
+    }
+    
+    func animateLabel(){
+        let animator = UIViewPropertyAnimator(duration: 0.6, curve: .easeOut) {
+            self.bitcoinPriceLabel.center.x -= 40
+            self.textView.backgroundColor = .red
+        }
+        animator.startAnimation()
+        
+        print("A n i m a t e")
     }
 
     
