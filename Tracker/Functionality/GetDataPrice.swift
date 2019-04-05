@@ -2,8 +2,8 @@
 import UIKit
 
 struct BitCoinData: Codable {
-    let ask: Float
-    let volume: Float
+    var ask: Float
+    var volume: Float
 }
 
 
@@ -21,8 +21,13 @@ public class GetDataPrice{
     var prettyText: [String: Any] = [:]
     var pricelist = [BitCoinData]()
     var urlList = [String]()
+    var finalURL = ""
     
-    func getData(finalURL: String) {
+    func generateURLS(completionHandler: @escaping  () -> Void) {
+        
+        for index in 0..<currencyArray.count{
+            var finalURL = baseURL + currencyArray[index]
+        
         
         guard let url = URL(string: finalURL) else {return}
         URLSession.shared.dataTask(with: url) {
@@ -31,13 +36,15 @@ public class GetDataPrice{
             do{
                 let myBitcoin = try JSONDecoder().decode(BitCoinData.self, from: data)
                 self.pricelist.append(myBitcoin)
+                print(self.pricelist.count, self.finalURL)
             }catch let jsonError{
                 print("JSON Error: \(jsonError)")
             }
             }
             .resume()
+        }
+        completionHandler()
     }
-    
     
     
     

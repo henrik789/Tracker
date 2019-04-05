@@ -15,8 +15,8 @@ class FlagViewController: UIViewController {
     }
     
     @IBAction func imageButton(_ sender: Any) {
-        let nation = flagView.setNation(row: index)
-        flagImage.image = flagView.getImage(land: nation)
+//        let nation = flagView.setNation(row: index)
+        flagImage.image = flagView.flagImageArray[index]
         index += 1
         if index == 20{
             index = 0

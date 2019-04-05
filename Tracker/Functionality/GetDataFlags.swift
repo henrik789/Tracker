@@ -4,35 +4,30 @@ class GetDataFlags {
     
     let currencyArray = ["AUD", "BRL","CAD","CNY","EUR","GBP","HKD","IDR","ILS","INR","JPY","MXN","NOK","NZD","PLN","RON","RUB","SEK","SGD","USD","ZAR"]
     var flagImage: UIImage = UIImage()
-    var flagImageArray = [UIImage]()
+    var flagImageArray: [UIImage] = []
     
     func getAllFlags(){
         for index in 0..<currencyArray.count{
             let countryCode = setNation(row: index)
-            DispatchQueue.global().async {
-                let newFlag = self.getImage(land: countryCode)
-                DispatchQueue.main.async {
-                    self.flagImageArray.append(newFlag)
-                }
-            }
+            self.getImage(land: countryCode)
         }
-        print("getting flags:  \(flagImageArray.count)")
+
     }
     
-    func getImage(land: String) -> UIImage{
+    func getImage(land: String){
         let imgUrl = "https://www.countryflags.io/\(land)/flat/64.png"
-        guard let url = URL(string: imgUrl) else {return flagImage}
+        guard let url = URL(string: imgUrl) else {return}
         DispatchQueue.global().async {
             [weak self] in
             if let data = try? Data(contentsOf: url) {
                 if let image = UIImage(data: data) {
                     DispatchQueue.main.async {
                         self?.flagImage = image
+                        self?.flagImageArray.append(image)
                     }
                 }
             }
         }
-        return flagImage
     }
     
     func setNation(row: Int) -> String{

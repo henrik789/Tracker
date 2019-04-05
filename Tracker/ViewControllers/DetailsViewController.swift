@@ -1,7 +1,3 @@
-//
-//  ViewController.swift
-//  BitcoinTicker
-//
 
 import UIKit
 

@@ -13,7 +13,6 @@
 		AF0CC37C221AB5F6007948CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF0CC37B221AB5F6007948CD /* Assets.xcassets */; };
 		AF0CC37F221AB5F6007948CD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF0CC37D221AB5F6007948CD /* LaunchScreen.storyboard */; };
 		AF0CC387221ABA5B007948CD /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0CC386221ABA5B007948CD /* Networking.swift */; };
-		AF5508D92229819A00F7097F /* Backup.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5508D82229819A00F7097F /* Backup.swift */; };
 		AF5508DB222984D900F7097F /* Notes in Resources */ = {isa = PBXBuildFile; fileRef = AF5508DA222984D900F7097F /* Notes */; };
 		AF577166222417E1002C1A8B /* PrettyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF577165222417E1002C1A8B /* PrettyJSON.swift */; };
 		AF57716A22256B3E002C1A8B /* CurrencyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF57716922256B3E002C1A8B /* CurrencyTableViewController.swift */; };
@@ -34,7 +33,6 @@
 		AF0CC37E221AB5F6007948CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AF0CC380221AB5F6007948CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AF0CC386221ABA5B007948CD /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
-		AF5508D82229819A00F7097F /* Backup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Backup.swift; sourceTree = "<group>"; };
 		AF5508DA222984D900F7097F /* Notes */ = {isa = PBXFileReference; lastKnownFileType = text; path = Notes; sourceTree = "<group>"; };
 		AF577165222417E1002C1A8B /* PrettyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrettyJSON.swift; sourceTree = "<group>"; };
 		AF57716922256B3E002C1A8B /* CurrencyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTableViewController.swift; sourceTree = "<group>"; };
@@ -82,7 +80,6 @@
 				AF66B8202255ED67002845C9 /* Functionality */,
 				AF5E8384222D48CE0092ECA3 /* MyPlayground.playground */,
 				AF0CC378221AB5F5007948CD /* Main.storyboard */,
-				AF5508D82229819A00F7097F /* Backup.swift */,
 				AF0CC37B221AB5F6007948CD /* Assets.xcassets */,
 				AF0CC37D221AB5F6007948CD /* LaunchScreen.storyboard */,
 				AF0CC380221AB5F6007948CD /* Info.plist */,
@@ -195,7 +192,6 @@
 				AF9D72CF22390F4900187316 /* MapViewController.swift in Sources */,
 				AF66B8222255EE5F002845C9 /* GetDataFlags.swift in Sources */,
 				AF577166222417E1002C1A8B /* PrettyJSON.swift in Sources */,
-				AF5508D92229819A00F7097F /* Backup.swift in Sources */,
 				AF0CC377221AB5F5007948CD /* DetailsViewController.swift in Sources */,
 				AF0CC375221AB5F5007948CD /* AppDelegate.swift in Sources */,
 				AFE770CC224A28DD008835BD /* Gradient.swift in Sources */,
