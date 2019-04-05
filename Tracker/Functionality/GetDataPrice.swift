@@ -21,13 +21,8 @@ public class GetDataPrice{
     var prettyText: [String: Any] = [:]
     var pricelist = [BitCoinData]()
     var urlList = [String]()
-    var finalURL = ""
     
-    func generateURLS(completionHandler: @escaping  () -> Void) {
-        
-        for index in 0..<currencyArray.count{
-            var finalURL = baseURL + currencyArray[index]
-        
+    func getData(finalURL: String) {
         
         guard let url = URL(string: finalURL) else {return}
         URLSession.shared.dataTask(with: url) {
@@ -36,14 +31,19 @@ public class GetDataPrice{
             do{
                 let myBitcoin = try JSONDecoder().decode(BitCoinData.self, from: data)
                 self.pricelist.append(myBitcoin)
-                print(self.pricelist.count, self.finalURL)
+                print(self.pricelist.count, finalURL)
             }catch let jsonError{
                 print("JSON Error: \(jsonError)")
             }
             }
             .resume()
+    }
+    
+    func generateURLS(){
+        for index in 0..<currencyArray.count{
+            let finalURL = baseURL + currencyArray[index]
+            getData(finalURL: finalURL)
         }
-        completionHandler()
     }
     
     

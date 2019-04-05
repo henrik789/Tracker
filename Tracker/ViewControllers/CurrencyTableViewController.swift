@@ -25,7 +25,7 @@ class CurrencyTableViewController: UITableViewController{
             let imageUrl = URL(string: "https://www.countryflags.io/\(land)/flat/64.png")
             urls.append(imageUrl!)
         }
-        
+        getPrices.generateURLS()
         self.view.addSubview(popUpView)
         let screenWidth = self.view.frame.size.width
         let screenHeight = self.view.frame.size.height
@@ -82,17 +82,16 @@ class CurrencyTableViewController: UITableViewController{
         }
         task.resume()
         
-        getPrices.generateURLS(completionHandler: {
-            () -> Void in
-            if let label = cell.viewWithTag(1) as? UILabel {
-                let price = self.getPrices.pricelist[indexPath.row]
-                label.text = String(price.ask)
-            }
-            if let detailLabel = cell.viewWithTag(2) as? UILabel {
-                let volume = self.getPrices.pricelist[indexPath.row]
-                detailLabel.text = String(volume.volume)
-            }
-        })
+        
+            print("**************************")
+//            if let label = cell.viewWithTag(1) as? UILabel {
+//                let price = self.getPrices.pricelist[indexPath.row]
+//                label.text = String(price.ask)
+//            }
+//            if let detailLabel = cell.viewWithTag(2) as? UILabel {
+//                let volume = self.getPrices.pricelist[indexPath.row]
+//                detailLabel.text = String(volume.volume)
+//
         self.activityView.stopAnimating()
         self.activityView.hidesWhenStopped = true
         self.popUpView.removeFromSuperview()
