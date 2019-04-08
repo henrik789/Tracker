@@ -40,13 +40,13 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="283" id="bMB-sb-3av"/>
                                 </constraints>
-                                <mutableString key="text">China banned trading in bitcoin, with the first steps taken in September 2017, and a complete ban starting 1 February 2018. Bitcoin prices then fell from $9,052 to $6,914 on 5 February 2018.
+                                <string key="text">China banned trading in bitcoin, with the first steps taken in September 2017, and a complete ban starting 1 February 2018. Bitcoin prices then fell from $9,052 to $6,914 on 5 February 2018.
 
 Throughout the rest of the first half of 2018, bitcoin's price fluctuated between $11,480 and $5,848. On 1 July 2018 bitcoin's price was $6,343.
 
 Bitcoin prices were negatively affected by several hacks or thefts from cryptocurrency exchanges, including thefts from Coincheck in January 2018, Coinrail and Bithumb in June, and Bancor in July. For the first six months of 2018, $761 million worth of cryptocurrencies was reported stolen from exchanges.
 
-The bitcoin blockchain is a public ledger that records bitcoin transactions.:215–219 Transactions of the form payer X sends Y bitcoins to payee Z are broadcast to this network using readily available software applications.</mutableString>
+The bitcoin blockchain is a public ledger that records bitcoin transactions.:215–219 Transactions of the form payer X sends Y bitcoins to payee Z are broadcast to this network using readily available software applications.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -171,30 +171,24 @@ The bitcoin blockchain is a public ledger that records bitcoin transactions.:215
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="64" translatesAutoresizingMaskIntoConstraints="NO" id="Cyy-5L-Dna">
-                                <rect key="frame" x="67" y="269" width="64" height="64"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dOb-pZ-Coj">
-                                <rect key="frame" x="122" y="181" width="130" height="30"/>
-                                <state key="normal" title="Change flag here..."/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dOb-pZ-Coj">
+                                <rect key="frame" x="115" y="181" width="144" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Start animation here."/>
                                 <connections>
-                                    <action selector="imageButton:" destination="8ak-5T-OF5" eventType="touchUpInside" id="IIK-h8-9Fv"/>
+                                    <action selector="imageButton:" destination="8ak-5T-OF5" eventType="touchUpInside" id="1Sz-fj-DDj"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Idle1" translatesAutoresizingMaskIntoConstraints="NO" id="Cyy-5L-Dna" userLabel="imageView">
+                                <rect key="frame" x="87" y="233" width="200" height="200"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="dOb-pZ-Coj" firstAttribute="centerX" secondItem="Cyy-5L-Dna" secondAttribute="centerX" constant="88" id="4pf-MH-whL"/>
-                            <constraint firstItem="Cyy-5L-Dna" firstAttribute="leading" secondItem="LLp-HQ-y4q" secondAttribute="leading" constant="67" id="Zg8-rG-zdc"/>
-                            <constraint firstItem="LLp-HQ-y4q" firstAttribute="trailing" secondItem="Cyy-5L-Dna" secondAttribute="trailing" constant="244" id="bSD-jQ-9Ts"/>
-                            <constraint firstItem="dOb-pZ-Coj" firstAttribute="top" secondItem="LLp-HQ-y4q" secondAttribute="top" constant="117" id="fYn-jm-oyB"/>
-                            <constraint firstItem="Cyy-5L-Dna" firstAttribute="top" secondItem="LLp-HQ-y4q" secondAttribute="top" constant="205" id="jsD-1B-aFw"/>
-                            <constraint firstItem="LLp-HQ-y4q" firstAttribute="bottom" secondItem="Cyy-5L-Dna" secondAttribute="bottom" constant="334" id="nxk-tJ-Jax"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="LLp-HQ-y4q"/>
                     </view>
                     <connections>
-                        <outlet property="flagImage" destination="Cyy-5L-Dna" id="EGP-sQ-k3B"/>
+                        <outlet property="imageView" destination="Cyy-5L-Dna" id="Vhp-xE-2AA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z7Z-ce-cpA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -359,6 +353,6 @@ The bitcoin blockchain is a public ledger that records bitcoin transactions.:215
         </scene>
     </scenes>
     <resources>
-        <image name="64" width="64" height="64"/>
+        <image name="Idle1" width="425.25" height="417"/>
     </resources>
 </document>
