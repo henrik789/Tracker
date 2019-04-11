@@ -25,6 +25,7 @@ class DetailsViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     @IBOutlet var detailView: UIView!
 //    @IBOutlet weak var popupTextView: UITextView!
     var getFlags = GetDataFlags()
+//    var getPrice = GetDataPrice()
     
     var effect: UIVisualEffect!
 //    var pricelist = PriceList()
@@ -109,15 +110,16 @@ class DetailsViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-//        return String(networking.currencyArray[row])
+        return ""
         
-        return "Title here"
+//        return "Title here"
         
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
 //        let nation = getFlags.setNation(row: row)
+        
         flagImage.image = getFlags.flagImageArray[row]
 //        let bitcoinPrice: String = networking.price
 //        self.bitcoinPriceLabel.text = "Price: \(bitcoinPrice)"

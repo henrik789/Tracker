@@ -3,9 +3,11 @@ import UIKit
 
 class FlagViewController: UIViewController {
     
+    @IBOutlet weak var imageViewLow: UIImageView!
     @IBOutlet weak var imageView: UIImageView!
     var aniImages: [UIImage] = []
     
+    var getFlags = GetDataFlags()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,7 +21,6 @@ class FlagViewController: UIViewController {
         var imageArray: [UIImage] = []
         
         for imageCount in 1...total{
-            print( "\(imagePrefix)\(imageCount)")
             let imageName = "\(imagePrefix)\(imageCount)"
             let image = UIImage(named: imageName)!
             
@@ -37,5 +38,7 @@ class FlagViewController: UIViewController {
     
     @IBAction func imageButton(_ sender: Any) {
         animate(imageView: imageView, images: aniImages)
+        print(getFlags.flagImageArray.count)
+//        imageViewLow.image = getFlags.flagImageArray[3]
     }
 }

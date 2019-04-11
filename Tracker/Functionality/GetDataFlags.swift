@@ -5,13 +5,46 @@ class GetDataFlags {
     let currencyArray = ["AUD", "BRL","CAD","CNY","EUR","GBP","HKD","IDR","ILS","INR","JPY","MXN","NOK","NZD","PLN","RON","RUB","SEK","SGD","USD","ZAR"]
     var flagImage: UIImage = UIImage()
     var flagImageArray: [UIImage] = []
+    var urlArray: [URL] = []
     
     func getAllFlags(){
         for index in 0..<currencyArray.count{
-            let countryCode = setNation(row: index)
-            self.getImage(land: countryCode)
+            let land = setNation(row: index)
+            //            self.getImage(land: countryCode)
+            let imageUrl = URL(string: "https://www.countryflags.io/\(land)/flat/64.png")
+            urlArray.append(imageUrl!)
         }
-
+        
+    }
+    
+    func getImageData(location: URL) -> Data? {
+        var imageData: Data? = nil
+        do {
+            try imageData = Data(contentsOf: location)
+        } catch {
+            
+        }
+        return imageData
+        
+    }
+    
+    func getImages(){
+        for index in 0..<currencyArray.count {
+            
+            let myURL = URLRequest(url: urlArray[index])
+            let task = URLSession.shared.downloadTask(with: myURL) {
+                (location, response, error) in
+                guard let location = location,
+                    let imageData = self.getImageData(location: location),
+                    let image = UIImage(data: imageData) else { return }
+                OperationQueue.main.addOperation {
+                    //                cell.imageView?.image = image
+                    self.flagImageArray.append(image)
+                    print("Flagimagearray: ", self.flagImageArray.count, "UrlArray: ", self.urlArray.count)
+                }
+            }
+            task.resume()
+        }
     }
     
     func getImage(land: String){

@@ -4,9 +4,11 @@ import UIKit
 
 class CurrencyTableViewController: UITableViewController{
     
+
+    let getPrices = NetworkService()
     let getFlags = GetDataFlags()
-    let getPrices = GetDataPrice()
     var urls = [URL]()
+    var prices = [BitCoinData]()
     
     @IBOutlet weak var networkButton: UIBarButtonItem!
     @IBOutlet weak var activityView: UIActivityIndicatorView!
@@ -20,12 +22,10 @@ class CurrencyTableViewController: UITableViewController{
     
     func setup(){
         
-        for index in 0..<getFlags.currencyArray.count{
-            let land = getFlags.setNation(row: index)
-            let imageUrl = URL(string: "https://www.countryflags.io/\(land)/flat/64.png")
-            urls.append(imageUrl!)
-        }
-        getPrices.generateURLS()
+        getFlags.getAllFlags()
+        getFlags.getImages()
+        loadData()
+//        getPrices.generateURLS()
         self.view.addSubview(popUpView)
         let screenWidth = self.view.frame.size.width
         let screenHeight = self.view.frame.size.height
@@ -40,16 +40,23 @@ class CurrencyTableViewController: UITableViewController{
         
     }
     
-    func getImageData(location: URL) -> Data? {
-        var imageData: Data? = nil
-        do {
-            try imageData = Data(contentsOf: location)
-        } catch {
-            
+    func updateUsers(completion: @escaping (Error?) -> Void) {
+        getPrices.getPrices { (prices, error) in
+            guard error == nil else {
+                completion(error)
+                return
+            }
+            self.prices = prices
+            completion(nil)
         }
-        return imageData
-        
     }
+    
+    func loadData() {
+        updateUsers{ (error) in
+            self.tableView.reloadData()
+        }
+    }
+    
     
     @IBAction func networkAction(_ sender: Any) {
         
@@ -63,40 +70,29 @@ class CurrencyTableViewController: UITableViewController{
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 21
+        return prices.count
     }
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.accessoryType = .none
+        print(prices[indexPath.row].ask)
+//                    if let label = cell.viewWithTag(1) as? UILabel {
+//                        let price = prices[indexPath.row].ask
+//                        label.text = String(price)
+//                    }
         
-        let task = URLSession.shared.downloadTask(with: urls[indexPath.row]) {
-            (location, response, error) in
-            guard let location = location,
-                let imageData = self.getImageData(location: location),
-                let image = UIImage(data: imageData) else { return }
-            OperationQueue.main.addOperation {
-                cell.imageView?.image = image
-            }
-        }
-        task.resume()
-        
-        
-            print("**************************")
-//            if let label = cell.viewWithTag(1) as? UILabel {
-//                let price = self.getPrices.pricelist[indexPath.row]
-//                label.text = String(price.ask)
-//            }
-//            if let detailLabel = cell.viewWithTag(2) as? UILabel {
-//                let volume = self.getPrices.pricelist[indexPath.row]
-//                detailLabel.text = String(volume.volume)
-//
+        print("**************************")
+        //            if let detailLabel = cell.viewWithTag(2) as? UILabel {
+        //                let volume = self.getPrices.pricelist[indexPath.row]
+        //                detailLabel.text = String(volume.volume)
+        //
         self.activityView.stopAnimating()
         self.activityView.hidesWhenStopped = true
         self.popUpView.removeFromSuperview()
         
-
+        
         return cell
     }
     

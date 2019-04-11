@@ -12,7 +12,6 @@
 		AF0CC37A221AB5F5007948CD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF0CC378221AB5F5007948CD /* Main.storyboard */; };
 		AF0CC37C221AB5F6007948CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF0CC37B221AB5F6007948CD /* Assets.xcassets */; };
 		AF0CC37F221AB5F6007948CD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF0CC37D221AB5F6007948CD /* LaunchScreen.storyboard */; };
-		AF0CC387221ABA5B007948CD /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0CC386221ABA5B007948CD /* Networking.swift */; };
 		AF5508DB222984D900F7097F /* Notes in Resources */ = {isa = PBXBuildFile; fileRef = AF5508DA222984D900F7097F /* Notes */; };
 		AF577166222417E1002C1A8B /* PrettyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF577165222417E1002C1A8B /* PrettyJSON.swift */; };
 		AF57716A22256B3E002C1A8B /* CurrencyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF57716922256B3E002C1A8B /* CurrencyTableViewController.swift */; };
@@ -21,6 +20,8 @@
 		AF66B82622563155002845C9 /* FlagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF66B82522563155002845C9 /* FlagViewController.swift */; };
 		AF67ABF8224CC365006B4B8C /* PushButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF67ABF7224CC365006B4B8C /* PushButton.swift */; };
 		AF9D72CF22390F4900187316 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9D72CE22390F4900187316 /* MapViewController.swift */; };
+		AFBC5081225F78C0003B2346 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFBC5080225F78BF003B2346 /* Request.swift */; };
+		AFBC5083225F7EB7003B2346 /* ServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFBC5082225F7EB7003B2346 /* ServiceManager.swift */; };
 		AFE770CC224A28DD008835BD /* Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE770CB224A28DD008835BD /* Gradient.swift */; };
 /* End PBXBuildFile section */
 
@@ -32,7 +33,6 @@
 		AF0CC37B221AB5F6007948CD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AF0CC37E221AB5F6007948CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AF0CC380221AB5F6007948CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AF0CC386221ABA5B007948CD /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		AF5508DA222984D900F7097F /* Notes */ = {isa = PBXFileReference; lastKnownFileType = text; path = Notes; sourceTree = "<group>"; };
 		AF577165222417E1002C1A8B /* PrettyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrettyJSON.swift; sourceTree = "<group>"; };
 		AF57716922256B3E002C1A8B /* CurrencyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTableViewController.swift; sourceTree = "<group>"; };
@@ -42,6 +42,8 @@
 		AF66B82522563155002845C9 /* FlagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlagViewController.swift; sourceTree = "<group>"; };
 		AF67ABF7224CC365006B4B8C /* PushButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushButton.swift; sourceTree = "<group>"; };
 		AF9D72CE22390F4900187316 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		AFBC5080225F78BF003B2346 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		AFBC5082225F7EB7003B2346 /* ServiceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceManager.swift; sourceTree = "<group>"; };
 		AFE770CB224A28DD008835BD /* Gradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gradient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -102,11 +104,12 @@
 		AF66B8202255ED67002845C9 /* Functionality */ = {
 			isa = PBXGroup;
 			children = (
-				AF0CC386221ABA5B007948CD /* Networking.swift */,
 				AFE770CB224A28DD008835BD /* Gradient.swift */,
+				AFBC5080225F78BF003B2346 /* Request.swift */,
 				AF67ABF7224CC365006B4B8C /* PushButton.swift */,
 				AF577165222417E1002C1A8B /* PrettyJSON.swift */,
 				AF66B8212255EE5F002845C9 /* GetDataFlags.swift */,
+				AFBC5082225F7EB7003B2346 /* ServiceManager.swift */,
 				AF66B8232255EE6F002845C9 /* GetDataPrice.swift */,
 			);
 			path = Functionality;
@@ -185,9 +188,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				AF57716A22256B3E002C1A8B /* CurrencyTableViewController.swift in Sources */,
+				AFBC5081225F78C0003B2346 /* Request.swift in Sources */,
 				AF67ABF8224CC365006B4B8C /* PushButton.swift in Sources */,
 				AF66B8242255EE6F002845C9 /* GetDataPrice.swift in Sources */,
-				AF0CC387221ABA5B007948CD /* Networking.swift in Sources */,
 				AF66B82622563155002845C9 /* FlagViewController.swift in Sources */,
 				AF9D72CF22390F4900187316 /* MapViewController.swift in Sources */,
 				AF66B8222255EE5F002845C9 /* GetDataFlags.swift in Sources */,
@@ -195,6 +198,7 @@
 				AF0CC377221AB5F5007948CD /* DetailsViewController.swift in Sources */,
 				AF0CC375221AB5F5007948CD /* AppDelegate.swift in Sources */,
 				AFE770CC224A28DD008835BD /* Gradient.swift in Sources */,
+				AFBC5083225F7EB7003B2346 /* ServiceManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
