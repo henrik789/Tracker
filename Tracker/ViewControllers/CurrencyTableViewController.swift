@@ -78,10 +78,11 @@ class CurrencyTableViewController: UITableViewController{
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.accessoryType = .none
         print(prices[indexPath.row].ask)
-//                    if let label = cell.viewWithTag(1) as? UILabel {
-//                        let price = prices[indexPath.row].ask
-//                        label.text = String(price)
-//                    }
+        
+                    if let label = cell.viewWithTag(1) as? UILabel {
+                        let price = prices[indexPath.row].ask
+                        label.text = String(price)
+                    }
         
         print("**************************")
         //            if let detailLabel = cell.viewWithTag(2) as? UILabel {

@@ -8,8 +8,8 @@ struct BitCoinData: Codable {
 
 
 class NetworkService {
-//    init() { }
-    func addRequest(_ request: Request, completion: @escaping (Any)-> Void) {
+    //    init() { }
+    func addRequest(_ request: Request, completion: @escaping (Data)-> Void) {
         
         let priceURL = "https://apiv2.bitcoinaverage.com/indices/global/ticker/BTCSEK"
         
@@ -21,8 +21,8 @@ class NetworkService {
                     print(error?.localizedDescription ?? "Response Error")
                     return }
             do{
-                let jsonResponse = try JSONSerialization.jsonObject(with: dataResponse, options: [])
-                completion(jsonResponse)
+                let jsonResponse = try JSONSerialization.jsonObject(with: dataResponse, options: .mutableContainers)
+                completion(dataResponse)
             } catch let parsingError {
                 print("Error", parsingError)
             }
@@ -31,22 +31,29 @@ class NetworkService {
     }
     
     func getPrices(completion: @escaping ([BitCoinData], Error?) -> Void) {
-        addRequest(.getUsers) { (response) in
-            print("HTTP Response: \(response)")
+        addRequest(.getUsers) { (dataResponse) in
+//            print("HTTP Response: \(response)")
             var prices = [BitCoinData]()
-            for anItem in response as! [Dictionary<String, AnyObject>] {
-                if let anBit 
-                let price = anItem["ask"] as! Float
-                let volume = anItem["volume"] as! Float
-                //                let usersUserName = anItem["username"] as! String
-                //                let usersEmail = anItem["email"] as! String
-                let priceList = BitCoinData(ask: price, volume: volume)
-                prices.append(priceList)
-                print( "Name: \(price), Phone: \(volume)")
+            do{
+                let myBitcoin = try JSONDecoder().decode(BitCoinData.self, from: dataResponse)
+                print(myBitcoin.ask, myBitcoin.volume)
+            prices.append(myBitcoin)
+            } catch let error {
+                print(error)
             }
-            completion(prices, nil)
             
-        }
+//            for anItem in response as! [Dictionary<String, AnyObject>] {
+//
+//                    if let price = anItem["ask"] as? Float,
+//                    let volume = anItem["volume"] as? Float {
+//                        let priceList = BitCoinData(ask: price, volume: volume)
+//                        prices.append(priceList)
+//                        print( "Name: \(price), Phone: \(volume)")
+//                    }
+//                }
+                completion(prices, nil)
+            
+            }
     }
 }
 
