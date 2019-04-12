@@ -11,7 +11,7 @@ class NetworkService {
     //    init() { }
     func addRequest(_ request: Request, completion: @escaping (Data)-> Void) {
         
-        let priceURL = "https://apiv2.bitcoinaverage.com/indices/global/ticker/BTCSEK"
+        let priceURL = "https://apiv2.bitcoinaverage.com/indices/global/ticker/BTCUSD"
         
         guard let url = URL(string: priceURL) else {return}
         let task = URLSession.shared.dataTask(with: url)
@@ -32,28 +32,16 @@ class NetworkService {
     
     func getPrices(completion: @escaping ([BitCoinData], Error?) -> Void) {
         addRequest(.getUsers) { (dataResponse) in
-//            print("HTTP Response: \(response)")
             var prices = [BitCoinData]()
             do{
                 let myBitcoin = try JSONDecoder().decode(BitCoinData.self, from: dataResponse)
                 print(myBitcoin.ask, myBitcoin.volume)
-            prices.append(myBitcoin)
+                prices.append(myBitcoin)
             } catch let error {
                 print(error)
             }
-            
-//            for anItem in response as! [Dictionary<String, AnyObject>] {
-//
-//                    if let price = anItem["ask"] as? Float,
-//                    let volume = anItem["volume"] as? Float {
-//                        let priceList = BitCoinData(ask: price, volume: volume)
-//                        prices.append(priceList)
-//                        print( "Name: \(price), Phone: \(volume)")
-//                    }
-//                }
-                completion(prices, nil)
-            
-            }
+            completion(prices, nil)
+        }
     }
 }
 

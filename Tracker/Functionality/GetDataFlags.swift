@@ -7,14 +7,14 @@ class GetDataFlags {
     var flagImageArray: [UIImage] = []
     var urlArray: [URL] = []
     
-    func getAllFlags(){
+    func getAllFlags(completion: @escaping ([URL]) -> Void){
         for index in 0..<currencyArray.count{
             let land = setNation(row: index)
             //            self.getImage(land: countryCode)
             let imageUrl = URL(string: "https://www.countryflags.io/\(land)/flat/64.png")
             urlArray.append(imageUrl!)
         }
-        
+        completion(urlArray)
     }
     
     func getImageData(location: URL) -> Data? {
@@ -28,40 +28,42 @@ class GetDataFlags {
         
     }
     
-    func getImages(){
-        for index in 0..<currencyArray.count {
-            
+    func getImages(completion: @escaping ([UIImage], Error?) -> Void) {
+        getAllFlags() { (urlArray) in
+        for index in 0..<urlArray.count {
             let myURL = URLRequest(url: urlArray[index])
             let task = URLSession.shared.downloadTask(with: myURL) {
                 (location, response, error) in
                 guard let location = location,
                     let imageData = self.getImageData(location: location),
                     let image = UIImage(data: imageData) else { return }
-                OperationQueue.main.addOperation {
-                    //                cell.imageView?.image = image
+//                OperationQueue.main.addOperation {
+//                    //                cell.imageView?.image = image
                     self.flagImageArray.append(image)
                     print("Flagimagearray: ", self.flagImageArray.count, "UrlArray: ", self.urlArray.count)
-                }
+//                }
             }
             task.resume()
         }
-    }
-    
-    func getImage(land: String){
-        let imgUrl = "https://www.countryflags.io/\(land)/flat/64.png"
-        guard let url = URL(string: imgUrl) else {return}
-        DispatchQueue.global().async {
-            [weak self] in
-            if let data = try? Data(contentsOf: url) {
-                if let image = UIImage(data: data) {
-                    DispatchQueue.main.async {
-                        self?.flagImage = image
-                        self?.flagImageArray.append(image)
-                    }
-                }
-            }
+            completion(self.flagImageArray, nil)
         }
     }
+    
+//    func getImage(land: String){
+//        let imgUrl = "https://www.countryflags.io/\(land)/flat/64.png"
+//        guard let url = URL(string: imgUrl) else {return}
+//        DispatchQueue.global().async {
+//            [weak self] in
+//            if let data = try? Data(contentsOf: url) {
+//                if let image = UIImage(data: data) {
+//                    DispatchQueue.main.async {
+//                        self?.flagImage = image
+//                        self?.flagImageArray.append(image)
+//                    }
+//                }
+//            }
+//        }
+//    }
     
     func setNation(row: Int) -> String{
         let nation = currencyArray[row]

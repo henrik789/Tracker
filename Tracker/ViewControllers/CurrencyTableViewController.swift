@@ -4,11 +4,12 @@ import UIKit
 
 class CurrencyTableViewController: UITableViewController{
     
-
+    
     let getPrices = NetworkService()
     let getFlags = GetDataFlags()
     var urls = [URL]()
     var prices = [BitCoinData]()
+    var images = [UIImage]()
     
     @IBOutlet weak var networkButton: UIBarButtonItem!
     @IBOutlet weak var activityView: UIActivityIndicatorView!
@@ -21,16 +22,14 @@ class CurrencyTableViewController: UITableViewController{
     }
     
     func setup(){
-        
-        getFlags.getAllFlags()
-        getFlags.getImages()
         loadData()
-//        getPrices.generateURLS()
         self.view.addSubview(popUpView)
         let screenWidth = self.view.frame.size.width
         let screenHeight = self.view.frame.size.height
         popUpView.center.x = screenWidth / 2
         popUpView.center.y = screenHeight / 3
+        //        let rect = CGRect(x: 10, y: 10, width: screenWidth, height: screenHeight)
+        //        popUpView = UIView(frame: rect)
         popUpView.layer.cornerRadius = 49
         popUpView.clipsToBounds = true
         
@@ -50,10 +49,28 @@ class CurrencyTableViewController: UITableViewController{
             completion(nil)
         }
     }
-    
+    func updateImages(completion: @escaping (Error?) -> Void){
+        getFlags.getImages() { (images, error) in
+            guard error == nil else {
+                completion(error)
+                return
+            }
+            self.images = images
+            completion(nil)
+        }
+    }
     func loadData() {
+        updateImages{ (error) in
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+        
         updateUsers{ (error) in
-            self.tableView.reloadData()
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+            
         }
     }
     
@@ -78,29 +95,25 @@ class CurrencyTableViewController: UITableViewController{
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.accessoryType = .none
         print(prices[indexPath.row].ask)
-        
-                    if let label = cell.viewWithTag(1) as? UILabel {
-                        let price = prices[indexPath.row].ask
-                        label.text = String(price)
-                    }
-        
-        print("**************************")
-        //            if let detailLabel = cell.viewWithTag(2) as? UILabel {
-        //                let volume = self.getPrices.pricelist[indexPath.row]
-        //                detailLabel.text = String(volume.volume)
-        //
         self.activityView.stopAnimating()
         self.activityView.hidesWhenStopped = true
         self.popUpView.removeFromSuperview()
         
-        
+        if let label = cell.viewWithTag(1) as? UILabel {
+            let price = String(prices[indexPath.row].ask)
+            label.text = "Asking price: \(price)"
+        }
+        if let label = cell.viewWithTag(2) as? UILabel {
+            let volume = String(prices[indexPath.row].volume)
+            label.text = "Volume: \(volume)"
+        }
+        let image : UIImage? = UIImage(named: "Idle2")
+        cell.imageView?.image = image
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //        if let cell = tableView.cellForRow(at: indexPath){
-        //            cell.imageView?.image = pricelist.flagArray[indexPath.row - 1]
-        //        }
+        
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
