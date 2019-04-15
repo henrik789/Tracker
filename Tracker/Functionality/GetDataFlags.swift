@@ -37,16 +37,16 @@ class GetDataFlags {
                 guard let location = location,
                     let imageData = self.getImageData(location: location),
                     let image = UIImage(data: imageData) else { return }
-//                OperationQueue.main.addOperation {
-//                    //                cell.imageView?.image = image
                     self.flagImageArray.append(image)
                     print("Flagimagearray: ", self.flagImageArray.count, "UrlArray: ", self.urlArray.count)
-//                }
+                completion(self.flagImageArray, nil)
             }
             task.resume()
+            
         }
-            completion(self.flagImageArray, nil)
+           
         }
+        
     }
     
     func setNation(row: Int) -> String{

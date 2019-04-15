@@ -70,11 +70,11 @@ class CurrencyTableViewController: UITableViewController{
             }
         }
         
-        updateUsers{ (error) in
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
+//        updateUsers{ (error) in
+//            DispatchQueue.main.async {
+//                self.tableView.reloadData()
+//            }
+//        }
     }
     
     
@@ -89,7 +89,7 @@ class CurrencyTableViewController: UITableViewController{
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return prices.count
+        return getFlags.flagImageArray.count
     }
     
     
@@ -97,17 +97,17 @@ class CurrencyTableViewController: UITableViewController{
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.accessoryType = .none
         
-        if let label = cell.viewWithTag(1) as? UILabel {
-            let price = String(prices[indexPath.row].ask)
-            label.text = "Asking price: \(price)"
-        }
-        if let label = cell.viewWithTag(2) as? UILabel {
-            let volume = String(prices[indexPath.row].volume)
-            label.text = "Volume: \(volume)"
-        }
+//        if let label = cell.viewWithTag(1) as? UILabel {
+//            let price = String(prices[indexPath.row].ask)
+//            label.text = "Asking price: \(price)"
+//        }
+//        if let label = cell.viewWithTag(2) as? UILabel {
+//            let volume = String(prices[indexPath.row].volume)
+//            label.text = "Volume: \(volume)"
+//        }
         let image : UIImage? = getFlags.flagImageArray[indexPath.row]
         cell.imageView?.image = image
-        
+
         self.activityView.stopAnimating()
         self.activityView.hidesWhenStopped = true
         self.popUpView.removeFromSuperview()
