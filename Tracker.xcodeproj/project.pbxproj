@@ -21,7 +21,6 @@
 		AF67ABF8224CC365006B4B8C /* PushButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF67ABF7224CC365006B4B8C /* PushButton.swift */; };
 		AF9D72CF22390F4900187316 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9D72CE22390F4900187316 /* MapViewController.swift */; };
 		AFBC5081225F78C0003B2346 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFBC5080225F78BF003B2346 /* Request.swift */; };
-		AFBC5083225F7EB7003B2346 /* ServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFBC5082225F7EB7003B2346 /* ServiceManager.swift */; };
 		AFE770CC224A28DD008835BD /* Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE770CB224A28DD008835BD /* Gradient.swift */; };
 /* End PBXBuildFile section */
 
@@ -43,7 +42,6 @@
 		AF67ABF7224CC365006B4B8C /* PushButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushButton.swift; sourceTree = "<group>"; };
 		AF9D72CE22390F4900187316 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		AFBC5080225F78BF003B2346 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
-		AFBC5082225F7EB7003B2346 /* ServiceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceManager.swift; sourceTree = "<group>"; };
 		AFE770CB224A28DD008835BD /* Gradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gradient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -109,7 +107,6 @@
 				AF67ABF7224CC365006B4B8C /* PushButton.swift */,
 				AF577165222417E1002C1A8B /* PrettyJSON.swift */,
 				AF66B8212255EE5F002845C9 /* GetDataFlags.swift */,
-				AFBC5082225F7EB7003B2346 /* ServiceManager.swift */,
 				AF66B8232255EE6F002845C9 /* GetDataPrice.swift */,
 			);
 			path = Functionality;
@@ -198,7 +195,6 @@
 				AF0CC377221AB5F5007948CD /* DetailsViewController.swift in Sources */,
 				AF0CC375221AB5F5007948CD /* AppDelegate.swift in Sources */,
 				AFE770CC224A28DD008835BD /* Gradient.swift in Sources */,
-				AFBC5083225F7EB7003B2346 /* ServiceManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

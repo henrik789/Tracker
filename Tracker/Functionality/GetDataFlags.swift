@@ -49,22 +49,6 @@ class GetDataFlags {
         }
     }
     
-//    func getImage(land: String){
-//        let imgUrl = "https://www.countryflags.io/\(land)/flat/64.png"
-//        guard let url = URL(string: imgUrl) else {return}
-//        DispatchQueue.global().async {
-//            [weak self] in
-//            if let data = try? Data(contentsOf: url) {
-//                if let image = UIImage(data: data) {
-//                    DispatchQueue.main.async {
-//                        self?.flagImage = image
-//                        self?.flagImageArray.append(image)
-//                    }
-//                }
-//            }
-//        }
-//    }
-    
     func setNation(row: Int) -> String{
         let nation = currencyArray[row]
         switch nation {

@@ -98,7 +98,7 @@ The bitcoin blockchain is a public ledger that records bitcoin transactions.:215
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <view clipsSubviews="YES" contentMode="scaleToFill" id="Sk9-Jr-HYS">
+                <view clipsSubviews="YES" contentMode="scaleToFill" id="Sk9-Jr-HYS" customClass="GradientView" customModule="Tracker" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="280" height="400"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                     <subviews>
@@ -151,7 +151,7 @@ The bitcoin blockchain is a public ledger that records bitcoin transactions.:215
                                                 <constraint firstItem="tgs-Qz-RZ6" firstAttribute="leading" secondItem="RBm-ez-qK4" secondAttribute="leading" constant="121" id="zcM-3C-il9"/>
                                             </constraints>
                                         </view>
-                                        <blurEffect style="extraLight"/>
+                                        <blurEffect style="light"/>
                                     </visualEffectView>
                                 </subviews>
                             </view>
@@ -159,6 +159,15 @@ The bitcoin blockchain is a public ledger that records bitcoin transactions.:215
                         </visualEffectView>
                     </subviews>
                     <viewLayoutGuide key="safeArea" id="kgq-Pn-aR1"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="firstColor">
+                            <color key="value" red="0.21720483899116516" green="0.91852253675460815" blue="0.70583933591842651" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="secondColor">
+                            <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="isHorizontal" value="NO"/>
+                    </userDefinedRuntimeAttributes>
                 </view>
             </objects>
             <point key="canvasLocation" x="1110" y="-129"/>
@@ -398,7 +407,7 @@ The bitcoin blockchain is a public ledger that records bitcoin transactions.:215
                             <color key="value" red="0.21720483899116516" green="0.91852253675460815" blue="0.70583933591842651" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="color" keyPath="secondColor">
-                            <color key="value" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </view>
