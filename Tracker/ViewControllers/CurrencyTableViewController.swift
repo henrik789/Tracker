@@ -13,6 +13,7 @@ class CurrencyTableViewController: UITableViewController{
     @IBOutlet weak var networkButton: UIBarButtonItem!
     @IBOutlet weak var activityView: UIActivityIndicatorView!
     @IBOutlet var popUpView: UIView!
+    var button = PushButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +23,9 @@ class CurrencyTableViewController: UITableViewController{
     
     func setup(){
         loadData()
+        button.fillColor = UIColor.black
+        button.center.x = self.view.frame.size.width
+        button.center.y = self.view.frame.size.height
         self.view.addSubview(popUpView)
         let screenWidth = self.view.frame.size.width
         let screenHeight = self.view.frame.size.height

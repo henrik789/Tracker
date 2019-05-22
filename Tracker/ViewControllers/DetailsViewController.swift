@@ -55,7 +55,7 @@ class DetailsViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         self.view.addSubview(detailView)
         
         detailView.center = self.view.center
-        detailView.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
+        detailView.transform = CGAffineTransform.init(scaleX: 1.4, y: 1.4)
         detailView.alpha = 1
         detailView.layer.cornerRadius = 20
         detailView.layer.shadowColor = UIColor.black.cgColor
@@ -63,7 +63,7 @@ class DetailsViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         detailView.layer.shadowRadius = 10
         detailView.layer.shadowOffset = CGSize(width: -1, height: 3)
         
-        UIView.animate(withDuration: 0.4) {
+        UIView.animate(withDuration: 0.3) {
             self.blurView.effect = self.effect
             self.detailView.alpha = 1
             self.detailView.transform = CGAffineTransform.identity
@@ -78,7 +78,7 @@ class DetailsViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     
     func animateOut (completion: () -> Void) {
         
-        UIView.animate(withDuration: 0.3, animations: {
+        UIView.animate(withDuration: 0.2, animations: {
             self.detailView.transform = CGAffineTransform.init(scaleX: 0.1, y: 0.1)
             self.detailView.alpha = 0
             self.blurView.effect = nil
